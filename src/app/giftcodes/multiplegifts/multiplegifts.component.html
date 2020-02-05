@@ -1,0 +1,83 @@
+<md-card class="card-content form-holder">
+
+    <div class="padding-fix">
+        <form #formCtrl="ngForm">
+        <md-input-container>
+            <input name="title" [(ngModel)]="multipleGift.title"  mdInput placeholder="عنوان">
+        </md-input-container>
+        <md-input-container>
+            <input name="description" [(ngModel)]="multipleGift.description"  mdInput placeholder="توضیحات">
+        </md-input-container>
+
+        <md-input-container>
+            <input name="batch_quantity" type="number" [(ngModel)]="multipleGift.batch_quantity"  mdInput placeholder="تعداد بچ ها">
+        </md-input-container>
+
+        <md-input-container>
+            <input name="pattern" [(ngModel)]="multipleGift.pattern"  mdInput placeholder="الگو">
+        </md-input-container>
+
+        <md-input-container>
+            <input name="chars_after_pattern" type="number" [(ngModel)]="multipleGift.chars_after_pattern"  mdInput placeholder="تعداد کاراکتر های بعد از الگو">
+        </md-input-container>
+
+        <md-input-container>
+            <input name="coin" type="number" [(ngModel)]="multipleGift.coin"  mdInput placeholder="سکه">
+        </md-input-container>
+        <md-input-container>
+            <input name="batch_ids" type="text" [(ngModel)]="multipleGift.batch_ids"  mdInput placeholder=" شماره بچ ها (جدا سازی با ,)">
+        </md-input-container>
+        <div class="w-100">
+            <label>
+                تاریخ شروع
+            </label>
+            <my-date-picker class="date-picker-batch"  [options]="myDatePickerOptions" name="start_date"  [(ngModel)]="multipleGift.start_date"></my-date-picker>
+            <label>
+                تاریخ پایان
+            </label>
+            <my-date-picker class="date-picker-batch"  [options]="myDatePickerOptions" name="stop_date"    [(ngModel)]="multipleGift.stop_date"></my-date-picker>
+        </div>
+        <md-checkbox name="new_player_only" [(ngModel)]="multipleGift.new_player_only">
+
+            فقط بازیکنان جدید
+        </md-checkbox>
+
+       <div class="w-100">
+           <button [disabled]="!formCtrl.form.valid"  class="btn margin-top-fix" md-raised-button color="primary" (click)="createMultiple()">
+               ساخت گیفت چندتایی
+           </button>
+           <button   class="btn margin-top-fix" md-raised-button color="warn" (click)="stopCreateBatch()">
+               توقف سریع گیفت های ساخته شده
+           </button>
+
+       </div>
+        </form>
+    </div>
+
+    <div class="padding-fix ">
+
+        <md-card class="checking-gifts">
+
+            <h3>چک کردن گیف های چندتایی فعال</h3>
+            <button   class="btn margin-top-fix" md-raised-button color="primary" (click)="checkMultipleGift()">
+                چک کردن وضعیت گیفت ها
+            </button>
+
+            <md-list *ngIf="multipleCheck.hasOwnProperty('is_active')" class="margin-top-fix">
+
+                <div class="w-100 margin-bottom">
+                    <span>وضعیت :</span>
+                    <span>{{multipleCheck.is_active ? 'فعال' : 'غیر فعال'}}</span>
+                </div>
+                <div class="w-100 margin-bottom">
+                    <span>تعداد ساخته شده :</span>
+                    <span>{{multipleCheck.created_count}}</span>
+                </div>
+
+            </md-list>
+
+        </md-card>
+
+    </div>
+
+</md-card>

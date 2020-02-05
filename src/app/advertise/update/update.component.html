@@ -1,0 +1,118 @@
+<form #formCtrl="ngForm" class="user-form">
+<md-card class="create-ads-card">
+
+    <!--<div md-card-avatar class="create-header-image"></div>-->
+    <md-toolbar color="primary">پنل ویرایش تبلیغات</md-toolbar>
+    <!--<md-card-subtitle>Dog Breed</md-card-subtitle>-->
+
+  <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+
+  <md-card-content>
+
+
+            <md-select   mdInput [(ngModel)]="adsDetails.publisher_id" placeholder="تبلیغ کننده"  class="input-full-width" name="publisher">
+              <md-option *ngFor="let publisher of this.publishers" [value]="publisher.publisher_id" >
+                {{publisher.title}}
+              </md-option>
+            </md-select>
+
+            <md-select   mdInput [(ngModel)]="adsDetails.ad_type" placeholder="نوع"  class="input-full-width" name="type">
+              <md-option *ngFor="let type of this.adTypes" [value]="type.value" >
+                {{type.title}}
+              </md-option>
+            </md-select>
+
+            <md-select   mdInput [(ngModel)]="adsDetails.platform" placeholder="platform"  class="input-full-width" name="platform">
+              <md-option *ngFor="let platform of this.platforms" [value]="platform.value" >
+                {{platform.value}}
+              </md-option>
+            </md-select>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.title" placeholder="عنوان"
+                   required type="text" name="title">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.text" placeholder="متن"
+                   required type="text" name="text">
+            </md-input-container>
+
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.initial_budget" placeholder="بودجه اولیه"
+                   required type="number" name="initial_budget">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.budget" placeholder="بودجه"
+                   required type="number" name="budget">
+            </md-input-container>
+
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.clicks" placeholder="کلیک"
+                   required type="number" name="clicks">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+              <input mdInput [(ngModel)]="adsDetails.created_at" placeholder="تاریخ ایجاد"
+                     required disabled type="text" name="created_at">
+            </md-input-container>
+  
+            <md-input-container class="input-full-width">
+              <input mdInput [(ngModel)]="adsDetails.expiration_at" placeholder="تاریخ آخرین کلیک"
+                     required disabled type="text" name="expiration_at">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.cost_per_click" placeholder="قیمت هر کلیک"
+                   required type="number" name="cost_per_click">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.cost_per_view" placeholder="قیمت هر بازدید"
+                   required type="number" name="cost_per_view">
+            </md-input-container>
+
+            <md-select   mdInput [(ngModel)]="adsDetails.status" placeholder="وضعیت"  class="input-full-width" name="status">
+              <md-option *ngFor="let status of this.statChoices" [value]="status.value" >
+                {{status.value}}
+              </md-option>
+            </md-select>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="adsDetails.link" placeholder="لینک"
+                   required type="text" name="link">
+            </md-input-container>
+
+      <div class="text-inside-grid">
+          <md-slide-toggle  [(ngModel)]="adsDetails.is_internal" name="is_internal"   [ngModelOptions]="{standalone: true}" >تبلیغ داخلی</md-slide-toggle>
+      </div>
+
+
+  </md-card-content>
+
+
+  <md-card-actions class="buttons">
+
+    <md-grid-list cols="4" rowHeight="4:1"  >
+
+      <md-grid-tile
+          *ngFor="let cat of this.cats"
+          [colspan]="1"
+          [rowspan]="1"
+
+          name="cat.title"
+          >
+      <div class="text-inside-grid"><md-slide-toggle  [(ngModel)]="cat.checked"   name="cat.title"  [ngModelOptions]="{standalone: true}" >{{cat.title}}</md-slide-toggle> </div>
+      </md-grid-tile>
+
+    </md-grid-list>
+
+    <button md-button [disabled]="!formCtrl.form.valid" (click)="UpdateAdvertise()">بروز رسانی</button>
+
+    <button md-button (click)="goBack()">بازگشت</button>
+  </md-card-actions>
+</md-card>
+</form>

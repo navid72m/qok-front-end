@@ -1,0 +1,21 @@
+.dashboard-card {
+  /* width: 400px; */
+  padding: 4%;
+}
+
+.dashboard-content {
+    margin-top: 3%;
+    padding-bottom: 2%;
+}
+
+.header-image {
+    width: 60px;
+    height: 60px;
+     background-image: url('../../assets/img/profile.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card-actions {
+    /* padding-bottom: 20px !important; */
+}

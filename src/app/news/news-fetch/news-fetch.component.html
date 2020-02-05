@@ -1,0 +1,61 @@
+<md-card class="fetch-news-card">
+
+    <md-toolbar color="primary">مشاهده‌ی خبرها</md-toolbar>
+
+    <div class="card-content" dir="rtl">
+      <table id="customers" style="width:100%">
+       <tr>
+          <th>انتشار به همه</th>
+          <th>انتشار به کاربر خاص</th>
+          <th>مشاهده جزئیات</th>
+          <th>ID</th>
+          <th>عنوان</th>
+          <th>متن کوتاه</th>
+          <th>زمان انقضا</th>
+          <th>حذف</th>
+       </tr>
+
+       <tr *ngFor="let news of fetchedNews">
+
+
+
+          <td class="table-cell-width">
+            <i md-list-icon class="material-icons" (click)="onPublishAll(news)" mdTooltip="انتشار به همه">present_to_all</i>
+          </td>
+
+          <td class="table-cell-width">
+            <i md-list-icon class="material-icons" (click)="onPublishUser(news)" mdTooltip="انتشار به کاربر خاص">person_add</i>
+          </td>
+
+          <td class="table-cell-width">
+            <a md-list-icon class="material-icons with-border" (click)="onViewDetails(news)"  href="#news/view/{{news.id}}" mdTooltip="مشاهده جزئیات">pageview</a>
+          </td>
+
+          <!--<th><md-input-container class="percentage-input">
+                <input class="percent-input" mdInput placeholder="درصد"
+                       type="number" [(ngModel)]="userCatStat.percent"
+                       (keyup)="onInputChange(userCatStat)">
+          </md-input-container></th>-->
+
+          <td class="table-cell-width"><div >{{news.id}}</div></td>
+
+          <td class="title-width"><div >{{news.title}}</div></td>
+
+          <td class="short-text-width"><div >{{news.short_text}}</div></td>
+
+          <td class="date-width"><div >{{news.expiration_time}}</div></td>
+
+          <td class="table-cell-width"><i md-list-icon class="material-icons" (click)="deleteNews(news)" mdTooltip="حذف">delete</i></td>
+
+          <!--<th><div >{{news.expiration_time}}</div></th>-->
+       </tr>
+
+
+     </table>
+    </div>
+
+  <md-card-actions class="buttons">
+    <!--<button md-button [disabled]="!formCtrl.form.valid" (click)="createNews()">ساختن</button>
+    <button md-button (click)="goBack()">بازگشت</button>-->
+  </md-card-actions>
+</md-card>

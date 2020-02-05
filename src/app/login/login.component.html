@@ -1,0 +1,19 @@
+<md-card class="no-padding">
+    <md-toolbar color="primary">صفحه ورود</md-toolbar>
+    <div class="card-content">
+        <form (keyup.enter)="login(username.value, password.value); password.value=''" class="login-form">
+            <md-input-container class="login-full-width">
+                <input mdInput placeholder="username"
+                       required #username>
+            </md-input-container>
+            <md-input-container class="login-full-width">
+                <input mdInput placeholder="password"
+                       type="password" required #password>
+            </md-input-container>
+        </form>
+        <button (click)="login(username.value, password.value); password.value=''"
+                md-raised-button color="primary" class="loging-button">ورود
+        </button>
+    </div>
+</md-card>
+

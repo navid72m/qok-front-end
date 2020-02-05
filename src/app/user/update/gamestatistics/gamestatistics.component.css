@@ -1,0 +1,26 @@
+.percent-info-card {
+     /* margin-right: 7.5% !important; */
+    /* width: 100%;   */
+}
+
+.card-content {
+    /* margin-right: 7.5% !important; */
+     width: 80%; 
+}
+.sticky {
+	/* position: -webkit-sticky;
+	position: sticky; */
+	/* top: 0; */
+    /* height: 3em; */
+    /* z-index: 2; */
+}
+
+.sticky-shortcut {
+
+}
+
+.slider {
+    top: 15px;
+    width: 80%;
+    /* direction: ltr; */
+}

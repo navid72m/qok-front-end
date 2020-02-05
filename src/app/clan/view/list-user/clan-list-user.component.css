@@ -1,0 +1,51 @@
+
+h3 {
+    font-family: IRANSansWeb !important;
+}
+
+md-toolbar {
+    height: 3em;
+}
+
+.sticky-spacer {
+  flex: 1 1 auto;
+}
+
+.users-list {
+    width: 45%;
+    float: right;
+    padding-top: 2em;
+    margin-right: 1em
+}
+.sticky-progress-spinner {
+    width: 24px;
+    height: 24px;
+}
+
+.sticky-shortcut, .sticky-progress-spinner {
+  /*padding: 0 14px;*/
+  position: relative;
+  bottom: 95%;
+}
+
+.header-button {
+    /* border-bottom: 1px solid #e3e3e3; */
+    width: 33%;
+    margin-left: 1%;
+    /* height: 24%; */
+}
+
+.card-content {
+    padding: 0px;
+    margin: 0px;
+}
+
+.material-icons:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+
+.coins-input {
+     /* margin-top: -0.6%;  */
+     width: 25%;
+}

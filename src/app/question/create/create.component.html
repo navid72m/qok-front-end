@@ -1,0 +1,93 @@
+<form #formCtrl="ngForm" >
+
+<md-card >
+    <!--<div md-card-avatar class="create-header-image"></div>-->
+    <md-toolbar color="primary">پنل ساخت سوال تبلیغاتی</md-toolbar>
+    <!--<md-card-subtitle>Dog Breed</md-card-subtitle>-->
+
+  <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+
+  <md-card-content class="margin-top-fix">
+
+
+            <!-- <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="advertise.publisher_id" placeholder="شناسه تبلیغ کننده"
+                   required type="number" name="publisher_id" >
+            </md-input-container> -->
+              <md-input-container class="input-full-width">
+                  <input mdInput [value]="question.created_by" placeholder="آیدی بازیکن انتخاب شده" readonly>
+              </md-input-container>
+
+              <md-input-container class="input-full-width">
+                  <input #search matInput autocomplete="off" (keyup)="leven(search.value)" placeholder="جستجو نام کاربر">
+                  <div class="myAutoComplete" *ngIf="users" #autoCompelete>
+                      <ul class="user-list">
+                          <li class="hoverable" *ngFor="let user of users " (click)="SelectUser(user.user_id)">
+                              <span>{{ user.username }}</span>
+                          </li>
+                      </ul>
+                  </div>
+
+              </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.question" placeholder="سوال"
+                   required type="text" name="question">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.choice1" placeholder="گزینه ۱"
+                   required type="text" name="choice1">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.choice2" placeholder="گزینه ۲"
+                   required type="text" name="choice2">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.choice3" placeholder="گزینه ۳"
+                   required type="text" name="choice3">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.choice4" placeholder="گزینه ۴"
+                   required type="text" name="choice4">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="question.correct_answer" placeholder="گزینه صحیح"
+                   required type="number" name="correct_answer">
+            </md-input-container>
+
+            <!--<md-input-container class="input-full-width">-->
+                <!--<input  mdInput [(ngModel)]="question.created_by" placeholder="بازیکن"-->
+                        <!--type="text" name="created_by" required>-->
+             <!--</md-input-container>-->
+
+            <md-select   mdInput [(ngModel)]="question.main_category_id" placeholder="موضوع"  class="input-full-width" name="status">
+              <md-option *ngFor="let cat of this.cats" [value]="cat.id" >
+                {{cat.title}}
+              </md-option>
+            </md-select>
+
+
+
+<md-card-actions class="buttons">
+    <div class="show-id" *ngIf="question_id">
+        <span>آیدی سوال : </span>
+        {{question_id}}
+    </div>
+  <button md-button   class="btn" (click)= "CreateQuestion()">ساختن</button>
+
+</md-card-actions>
+
+  </md-card-content>
+
+</md-card>
+
+
+</form>
+
+
+<!--<advertise  (onCreateAds)= "onCreateAdvertise($event)"  (getAdId)= "getAdvertiseId($event)" (getCategories) = "getCategories($event)"  *ngIf="this.showAdvertise"> </advertise>-->

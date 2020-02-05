@@ -1,0 +1,243 @@
+<md-card class="card-content form-holder">
+
+    <div class="padding-fix">
+        <form #formCtrl="ngForm">
+            <md-input-container>
+                <input name="title" [(ngModel)]="SinglegiftsModel.title"  mdInput placeholder="عنوان">
+            </md-input-container>
+            <md-input-container>
+                <input name="description" [(ngModel)]="SinglegiftsModel.description"  mdInput placeholder="توضیحات">
+            </md-input-container>
+            <md-input-container>
+                <input name="code" type="text" [(ngModel)]="SinglegiftsModel.code"  mdInput placeholder="کد هدیه">
+            </md-input-container>
+
+            <md-input-container>
+                <input name="coin" type="number" [(ngModel)]="SinglegiftsModel.coin"  mdInput placeholder="سکه">
+            </md-input-container>
+            <md-input-container>
+                <input name="quantity" type="number" [(ngModel)]="SinglegiftsModel.quantity"  mdInput placeholder="تعداد">
+            </md-input-container>
+            <div class="w-100">
+                <label>
+                    تاریخ شروع
+                </label>
+                <my-date-picker class="date-picker-batch"  [options]="myDatePickerOptions" name="start_date"  [(ngModel)]="SinglegiftsModel.start_date"></my-date-picker>
+                <label>
+                    تاریخ پایان
+                </label>
+                <my-date-picker class="date-picker-batch"  [options]="myDatePickerOptions" name="stop_date"    [(ngModel)]="SinglegiftsModel.stop_date"></my-date-picker>
+            </div>
+            <md-checkbox name="new_player_only" [(ngModel)]="SinglegiftsModel.new_player_only">
+
+                فقط بازیکنان جدید
+            </md-checkbox>
+
+            <div class="w-100">
+                <button [disabled]="!formCtrl.form.valid"  class="btn margin-top-fix" md-raised-button color="primary" (click)="createSingleBatch()">
+                    ساخت گیفت تکی
+                </button>
+                <!--<button   class="btn margin-top-fix" md-raised-button color="warn" (click)="stopCreateBatch()">-->
+                    <!--توقف سریع گیفت های ساخته شده-->
+                <!--</button>-->
+
+            </div>
+        </form>
+    </div>
+
+    <div class="padding-fix ">
+
+        <md-card class="checking-gifts">
+
+            <h3>دریافت اطلاعات گیفت</h3>
+            <md-input-container>
+                <input name="get_code" type="text" [(ngModel)]="giftDetailCode"  mdInput placeholder="کد گیفت">
+            </md-input-container>
+            <div class="w-100">
+                <button   class="btn margin-top-fix" md-raised-button color="primary" (click)="getSingleGiftDetaile()">
+                    دریافت
+                </button>
+            </div>
+            <modal #getDetailModal class="bs-modal">
+
+                <ng-template #modalHeader><h2>اطلاعات گیفت</h2></ng-template>
+                <ng-template #modalBody>
+
+                       <div class="holder">
+                           <div class="modal-detail-title">
+                               شماره :
+                           </div>
+                           <div class="modal-detail">
+                               {{getGiftsDetails.Id}}
+                           </div>
+                       </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            کد :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Code}}
+                        </div>
+                    </div>
+
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            سکه :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Coin}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            عنوان :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Title}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            توضیحات :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Description}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            استفاده شده :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Used}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            تعداد :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Quantity}}
+                        </div>
+                    </div>
+
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            فقط بازیکنان جدید :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.NewPlayerOnly ? "بله":"خیر"}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            تاریخ شروع :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.StartDate}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            تاریخ پایان :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.StopDate}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            وضعیت :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.Status}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            تاریخ ساخت :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.CreatedAt}}
+                        </div>
+                    </div>
+                    <div class="holder">
+                        <div class="modal-detail-title">
+                            تاریخ آخرین تغییر :
+                        </div>
+                        <div class="modal-detail">
+                            {{getGiftsDetails.UpdatedAt}}
+                        </div>
+                    </div>
+
+
+                </ng-template>
+                <ng-template #modalFooter></ng-template>
+            </modal>
+        </md-card>
+
+    </div>
+
+    <div class="padding-fix ">
+
+        <md-card class="checking-gifts">
+
+            <h3>دریافت وضعیت گیفت</h3>
+            <md-input-container>
+                <input name="get_code" type="text" [(ngModel)]="giftCheck"  mdInput placeholder="کد گیفت">
+            </md-input-container>
+            <div class="w-100">
+                <button   class="btn margin-top-fix" md-raised-button color="primary" (click)="checkGiftUsage()">
+                    دریافت
+                </button>
+            </div>
+            <modal #checkUsageModal class="bs-modal">
+
+                <ng-template #modalHeader><h2>وضعیت گیفت</h2></ng-template>
+                <ng-template #modalBody>
+
+                    <div class="holder" *ngIf="!checkedgiftStatus.length">
+                        از این گیفت استفاده ای نشده است
+                    </div>
+
+                    <div class="holder special-holder" *ngFor="let item of checkedgiftStatus">
+                       <div class="w-100">
+                           <div class="modal-detail-title">
+                               شماره گیفت :
+                           </div>
+                           <div class="modal-detail">
+                               {{item.GiftId}}
+                           </div>
+                       </div>
+                        <div class="w-100">
+                            <div class="modal-detail-title">
+                                شماره بازیکن :
+                            </div>
+                            <div class="modal-detail">
+                                {{item.PlayerId}}
+                            </div>
+                        </div>
+
+                        <div class="w-100">
+                            <div class="modal-detail-title">
+                                تاریخ ساخت :
+                            </div>
+                            <div class="modal-detail">
+                                {{item.CreatedAt}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </ng-template>
+
+            </modal>
+
+
+
+        </md-card>
+
+    </div>
+
+
+</md-card>

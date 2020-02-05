@@ -1,0 +1,25 @@
+.batches-tab .tab{
+    font-size: 16px;
+}
+.mat-input-container{
+
+    margin-left: 150px;
+
+}
+.date-picker-batch{
+    width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+.padding-fix{
+    padding: 20px;
+}
+.margin-top-fix{
+    margin-top: 30px;
+}
+.checking-gifts{
+    padding: 10px 30px;
+}
+.margin-bottom{
+    margin-bottom: 10px;
+}

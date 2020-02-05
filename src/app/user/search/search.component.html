@@ -1,0 +1,134 @@
+<md-card class="main-search-card">
+    <md-toolbar color="primary">جستجوی کاربران/گروه</md-toolbar>
+    <div class="card-content">
+        <md-input-container>
+            <input #searchedName (keyup.enter)="leven(searchedName.value); searchedName.value=''" mdInput placeholder="نام کاربری">
+        </md-input-container>
+        <!-- <button (click)="search(searchedName.value); searchedName.value=''"
+                class="btn" md-raised-button color="primary">جستجو
+        </button> -->
+
+        <button (click)="leven(searchedName.value); searchedName.value=''"
+                class="btn" md-raised-button color="primary">جست و جو
+        </button>
+    </div>
+    <div class="card-content">
+        <md-input-container>
+            <input #searchedClan (keyup.enter)="clanMembers(searchedClan.value)" mdInput placeholder="نام گروه">
+        </md-input-container>
+        <button (click)="clanMembers(searchedClan.value)"
+            class="btn" md-raised-button color="primary">جست و جو
+        </button>
+    </div>
+    <div class="card-content">
+        <md-input-container>
+            <input #searchedCode (keyup.enter)="searchCode(searchedCode.value); searchedCode.value=''" mdInput placeholder="کد دعوت">
+        </md-input-container>
+        <button (click)="searchCode(searchedCode.value); searchedCode.value=''"
+                class="btn" md-raised-button color="primary">جست و جو
+        </button>
+    </div>
+
+    <div class="card-content recipe">
+        <md-input-container>
+            <input  [(ngModel)]="recipeNumber" mdInput placeholder="دریافت رسید">
+        </md-input-container>
+        <md-radio-group [(ngModel)]="recipeType" class="radio-holder">
+            <md-radio-button value="direct" class="md-primary">مستقیم</md-radio-button>
+            <md-radio-button value="sibche"> سیبچه </md-radio-button>
+            <md-radio-button value="other">سایر موادر</md-radio-button>
+        </md-radio-group>
+        <button (click)="searchRecipe()" class="btn responsive-margin" md-raised-button color="primary">
+            جست و جو
+        </button>
+    </div>
+
+</md-card>
+
+<div class="recipe-list">
+    <md-card *ngIf="recivedRecipe.length > 0">
+        <md-toolbar color="primary">رسید</md-toolbar>
+        <div class="card-content" dir="rtl">
+            <md-list>
+                <h3 md-subheader>نتایج جست و جو</h3>
+                <md-list-item class="show-list list-container" *ngFor="let recipe of recivedRecipe">
+                        <div class="recipe-block">
+                            <span class="gray">شماره رسید :</span>
+                            <span class="black">{{recipe.id}}</span>
+                        </div>
+                        <div class="recipe-block">
+                            <span class="gray">شماره بازیکن :</span>
+                            <span class="black">{{recipe.player_id}}</span>
+                        </div>
+                        <div class="recipe-block">
+                            <span class="gray">مقدار :</span>
+                            <span class="black">  {{recipe.amount}} تومان</span>
+                        </div>
+                        <div class="recipe-block">
+                            <span class="gray">وضعیت :</span>
+                            <span class="black">{{recipe.status}}</span>
+                        </div>
+                        <div class="recipe-block">
+                            <span class="gray">شماره بسته :</span>
+                            <span class="black">{{recipe.package_id}}</span>
+                        </div>
+                        <div class="recipe-block min-width">
+                            <span class="gray">date :</span>
+                            <span class="black">{{recipe.created_at}}</span>
+                        </div>
+                </md-list-item>
+            </md-list>
+        </div>
+    </md-card>
+    <md-card *ngIf="noRecipe">
+        <md-toolbar color="primary">رسید</md-toolbar>
+        <div class="card-content" dir="rtl">
+            <md-list>
+                <h3 md-subheader>نتایج جست و جو</h3>
+                <md-list-item class="show-list">
+
+                    رسیدی با این مشخصات موجود نمی باشد
+
+                </md-list-item>
+            </md-list>
+        </div>
+    </md-card>
+</div>
+<div class="clans-list">
+    <md-card *ngIf="clans">
+        <md-toolbar color="primary">نتایج گروه</md-toolbar>
+        <div class="card-content" dir="rtl">
+                <md-list>
+                <h3 md-subheader>نتایج جست و جو</h3>
+                <md-list-item class="show-list" *ngFor="let clan of clans">
+                    <!-- <i md-list-icon class="material-icons" (click)="onSelect(user)" mdTooltip="مشاهده‌ی جزئیات">open_in_new</i> -->
+
+                    <!-- <p  md-line *ngIf="user.username">نام کاربری</p> -->
+                    <h4 class="show-details" md-line (click)="onSelectClan(clan)" *ngIf="clan.title">{{clan.title}}</h4>
+                </md-list-item>
+                </md-list>
+        </div>
+    </md-card>
+    </div>
+<div class="users-list">
+<md-card *ngIf="users">
+    <md-toolbar color="primary">نتایج کاربران</md-toolbar>
+    <div class="card-content" dir="rtl">
+            <md-list>
+            <h3 md-subheader>نتایج جست و جو</h3>
+            <md-list-item class="show-list" *ngFor="let user of users">
+
+                <h4 class="show-details" md-line (click)="onSelect(user)" *ngIf="user.username">{{user.username}}</h4>
+
+                <h4 class="show-details" md-line (click)="onSelect(user)" *ngIf="user.code">{{user.code}}</h4>
+                <i class="material-icons" (click)="onAddUser(user)"   mdTooltip="اضافه به لیست">add</i>
+                <i class="material-icons" (click)="onSelectUserId(user.user_id)"   mdTooltip="لیست سوالات">list</i>
+            </md-list-item>
+            </md-list>
+    </div>
+</md-card>
+</div>
+
+<list-user *ngIf="users" class="sticky" [users]="selectedUsers" (onClearUser)="onClearUser($event)"></list-user>
+
+<div class="footer"></div>

@@ -1,0 +1,57 @@
+h3 {
+    position: relative;
+    color: #d71d5e;
+    font-size: 20px;
+    font-weight: 200;
+    padding-right: 36px;
+    margin: 15px;
+}
+
+h3:before {
+    position: absolute;
+    content: url("../../../assets/icon/graphic.svg");
+    top: 2px;
+    right: 0;
+    height: 26px;
+    width: 26px;
+}
+.right{
+    float: right;
+}
+
+.card-content {
+    width: auto;
+    float: none;
+}
+
+@media (min-width: 870px) {
+    .card-content {
+        width: 49%;
+        float: right;
+        margin: 0 1% 2% 0 !important;
+        padding: 0 !important;
+    }
+}
+
+table {
+    width: 100%;
+    border: 1px solid #eceeef;
+}
+
+th {
+    color: #3f51b5;
+}
+
+th, td {
+    padding: 5px 15px;
+    text-align: right;
+    border: 1px solid #eceeef;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+
+tr:first-child {
+    border-bottom: none;
+}

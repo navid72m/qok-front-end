@@ -1,0 +1,189 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
+
+// basic services
+import { NotificationsService } from 'angular2-notifications';
+import { ProgressBarService } from '../../core/progress-bar/progress-bar.service';
+import { ScrollTopService } from '../../core/scroll-top.service';
+
+// services
+import { ViewService } from './view.service';
+import { UpdateService} from './update.service';
+import { FriendsService } from './friends.service';
+import { PaymentsService } from './payments.service';
+import { GetStatsService } from './services/statistics-getstats.service';
+
+// models
+import { UserView, Friend, UserPayments } from './view.model';
+import { UserCategoryStats } from './models/statistics-view.model';
+// import { CATEGORIES } from '../../shared/categories.model';
+
+import 'rxjs/add/operator/switchMap';
+
+@Component({
+	selector: 'app-user-view',
+	templateUrl: './view.component.html',
+	styleUrls: ['./view.component.css']
+})
+
+export class UserViewComponent implements OnInit {
+//	type MyArrayType = Array<{id: number, text: string}>;
+
+	// view
+	userview: UserView;
+	valid: Boolean = false;
+
+	// friends
+	friends: Friend[];
+
+	// payments
+	payments: UserPayments;
+
+	// category statisitcs
+	// categories = 		CATEGORIES;
+	userCategoryStats: 	UserCategoryStats[];
+	
+	statusChoices: Array<{ value: string}> = [
+		{ value : "NOT_VERIFIED"},
+		{ value : "NOT_VALIDATED"},
+		{ value : "ACTIVE"},
+		{ value : "DEACTIVATED"},
+		{ value : "DELETED"},
+		{ value : "LOCKED"},
+		{ value : "EXPIRED"}
+	];
+
+	dialogMessage = new DialogModel();
+	dialogResetPasswordMessage = new DialogResetPasswordModel();
+
+	constructor (
+					// basics
+					private route: ActivatedRoute,
+					private router: Router,
+					private location: Location,
+
+					// common
+					private progressBarService: ProgressBarService,
+					private notificationsService: NotificationsService,
+					private scrollTopService: ScrollTopService,
+
+					// component
+					private viewService: ViewService,
+					private updateService: UpdateService,
+
+					// children
+					private getStatsService: GetStatsService,
+					// private statsService : StatsService,
+					private paymentsService: PaymentsService,
+					private friendsService: FriendsService,
+				) {}
+
+	ngOnInit(): void {
+		this.progressBarService.queryInProgress();
+		this.route.params
+			.switchMap((params: Params) => {
+				return this.viewService.view(+params['id'])
+			})
+			.subscribe(userview_result => {
+				this.userview = userview_result;
+				this.progressBarService.queryFinished();
+			});
+         }
+
+	updateDetails(): void{
+		this.progressBarService.queryInProgress();
+		this.updateService.update(+this.userview.id,this.userview.username, this.userview.email, +this.userview.score, +this.userview.weekly_score, +this.userview.coins, +this.userview.trophies, this.userview.password, this.userview.status, +this.userview.level, +this.userview.username_change_time)
+		.then(s => {
+			this.notificationsService.success("Sucess", "Updated User Info", { timeOut: 1500 });
+			this.progressBarService.queryFinished();
+		})
+		.catch(err => {
+			this.notificationsService.error("Error", "Update Failed", { timeOut: 1500 });
+			this.progressBarService.queryFinished();
+		});
+
+		// setTimeout(function(){
+			// window.scrollTo(0, 1);
+		// }, 0);
+		// this.scrollToTop();
+		this.scrollTopService.scrollToTop();
+	}
+
+	unblockLogin(): void {
+		this.progressBarService.queryInProgress();
+		this.updateService.unblockLogin(+this.userview.id)
+		.then(s => {
+			this.notificationsService.success("Sucess", "User Unblocked", { timeOut: 1500 });
+			this.progressBarService.queryFinished();
+		})
+		.catch(err => {
+			this.notificationsService.error("Error", "Unblocking Failed", { timeOut: 1500 });
+			this.progressBarService.queryFinished();
+		});
+	}
+
+	goBack(): void {
+		this.location.back();
+	}
+
+	onSelect(friend: Friend): void {
+		const url = `user/view/${friend.id}`;
+		this.router.navigateByUrl(url);
+		this.friends= [];
+		this.payments= null;
+		this.scrollTopService.scrollToTop();
+	}
+
+	search(id: number): void {
+		this.progressBarService.queryInProgress();
+		this.friendsService.search(id).then(
+			friends => {
+				this.friends = friends;
+				this.notificationsService.success("Success", "Users Fetched", { timeOut: 500 });
+				this.progressBarService.queryFinished();
+			},
+			error => {
+				this.notificationsService.error("Error", error);
+				this.progressBarService.queryFinished();
+			}
+		);
+	}
+
+	getpayments(id: number): void {
+		this.progressBarService.queryInProgress();
+		this.paymentsService.getPayments(id).then(
+			payments => {
+				this.payments = payments;
+				this.notificationsService.success("Success", "Payments Fetched", { timeOut: 500 });
+				this.progressBarService.queryFinished();
+			},
+			error => {
+				this.notificationsService.error("Error", error);
+				this.progressBarService.queryFinished();
+			}
+		);
+	}
+
+	// provide data for statistics-view.component
+	getUserCategoryStats(id: number): void {
+		this.progressBarService.queryInProgress();
+		this.getStatsService.getStats(id).then(
+			stats => {
+				console.log(stats);
+				this.userCategoryStats = stats;
+				// this.getCategorytitle( usercategorystats	);
+				this.notificationsService.success("Success", ".اطلاعات جمع آوری شد", { timeOut: 500 });
+				this.progressBarService.queryFinished();
+			},
+			error => {
+				this.notificationsService.error("Error", error);
+				this.progressBarService.queryFinished();
+			}
+		);
+
+		this.scrollTopService.scrollToTop();
+	}
+}

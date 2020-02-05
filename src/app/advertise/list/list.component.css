@@ -1,0 +1,52 @@
+md-card {
+    padding: 0;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+mat-button-ripple {
+    display: none;
+}
+
+h3 {
+    font-family: IRANSansWeb !important;
+}
+
+md-list-item:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+.material-icons:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+
+
+th ,td {
+    text-align: center !important;
+}
+
+#list {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#list td, #list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#list tr:nth-child(even){background-color: #f2f2f2;}
+
+#list tr:hover {background-color: #ddd;}
+
+#list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #3f51b5;
+    color: white;
+}

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: quizofkings-panel-ingress
+  namespace: qok-server-ng
+  annotations:
+spec:
+  rules:
+  - host: panel.quizofkings.com
+    http:
+      paths:
+        - backend:
+            serviceName: quizofkings-panel-service
+            servicePort: 80

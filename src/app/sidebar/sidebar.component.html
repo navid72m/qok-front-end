@@ -1,0 +1,21 @@
+<md-toolbar color="primary">
+    Quiz of Kings
+    <span class="app-toolbar-filler"></span>
+</md-toolbar>
+<md-nav-list dir="rtl">
+    <md-list-item *ngFor="let menuitem of menuitems">
+        <a *ngIf="menuitem.subset.length === 0" md-line routerLink="{{menuitem.route}}">{{menuitem.title}}</a>
+        <div class="menu-list" *ngIf="menuitem.subset.length > 0">
+            <button class="menu-button" md-button [mdMenuTriggerFor]="anchorMenu">
+                <md-icon>more_vert</md-icon>
+                {{menuitem.title}}
+            </button>
+            <md-menu #anchorMenu="mdMenu">
+                <a class="menu-anchor" md-menu-item *ngFor="let subitem of menuitem.subset" routerLink="{{subitem.route}}">
+                    {{ subitem.title }}
+                </a>
+            </md-menu>
+        </div>
+    </md-list-item>
+</md-nav-list>
+

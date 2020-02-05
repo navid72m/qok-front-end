@@ -1,0 +1,60 @@
+.create-user-card {
+    padding-bottom: 2em;
+}
+
+.input-full-width {
+    display: list-item;
+    width: 40%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.first {
+    width: 39%;
+    list-style-type: none;
+    margin-right: 1.5em;
+}
+
+.progress-spinner {
+    float: right;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 1.7em;
+    right: 1em;
+}
+
+.buttons {
+    margin-top: -20px;
+    margin-right: 1.5em;
+    clear: both;
+}
+
+
+
+
+/*
+check icon
+*/
+
+.wrapper {
+  width: 100px;
+  margin: 4em auto 0;
+}
+
+.checkmark {
+  stroke: green;
+  stroke-dashoffset: 745.74853515625;
+  stroke-dasharray: 745.74853515625;
+  animation: dash 2s ease-out forwards;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 745.74853515625;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

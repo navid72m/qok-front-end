@@ -1,0 +1,52 @@
+.batches-tab .tab{
+    font-size: 16px;
+}
+.mat-input-container{
+
+    margin-left: 150px;
+
+}
+.date-picker-batch{
+    width: 200px;
+    display: block;
+    margin-bottom: 10px;
+}
+.padding-fix{
+    padding: 20px;
+}
+.margin-top-fix{
+    margin-top: 30px;
+}
+.checking-gifts{
+    padding: 10px 30px;
+}
+.margin-bottom{
+    margin-bottom: 10px;
+}
+.modal-dialog,.bs-modal{
+    min-width: 500px;
+}
+.modal-detail{
+    font-size: 15px;
+    display: block;
+    color: #757575;
+}
+.modal-detail-title{
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0d1623;
+}
+.modal-content{
+    width: 500px !important;
+}
+.holder{
+    display: inline-block;
+    min-width: 200px;
+}
+.special-holder{
+    box-shadow:3px 3px 3px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.03);
+    margin: 5px;
+    padding: 20px;
+}

@@ -1,0 +1,17 @@
+.create-question {
+    padding-bottom: 2em;
+}
+
+.input-full-width {
+    display: list-item;
+    width: 40%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.buttons {
+    margin-top: -20px;
+    margin-right: 1.5em;
+    clear: both;
+}

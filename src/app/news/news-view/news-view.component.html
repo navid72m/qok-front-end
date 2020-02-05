@@ -1,0 +1,15 @@
+<form #formCtrl="ngForm" class="news-form">
+<md-card class="view-news-card">
+ 
+    <md-toolbar color="primary">اطلاعات خبر</md-toolbar>
+
+  <md-card-content>
+            <news-inputs [news]="news" (onChangeNews)="onChangeNews($event)"></news-inputs>
+  </md-card-content>
+
+  <md-card-actions class="buttons">
+    <button md-button [disabled]="!formCtrl.form.valid" (click)="updateNews()">تغییر</button>
+    <button md-button (click)="goBack()">بازگشت</button>
+  </md-card-actions>
+</md-card>
+</form>

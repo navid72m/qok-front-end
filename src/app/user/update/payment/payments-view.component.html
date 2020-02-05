@@ -1,0 +1,79 @@
+<form #formCtrl="ngForm" class="user-form">
+  <md-card class="create-user-card">
+
+    <md-card-content>
+      <div class="holder">
+        <h3 md-subheader>چک کردن آواتار خریده شده</h3>
+
+        <!--<md-progress-spinner-->
+                <!--class="progress-spinner"-->
+                <!--[color]="spinnerColor"-->
+                <!--[mode]="mode"-->
+                <!--[value]="spinnerValue">-->
+        <!--</md-progress-spinner>-->
+
+        <md-input-container class="input-full-width first">
+          <input disabled mdInput [(ngModel)]="id" placeholder="شناسه کاربر"
+                 type="text" name="id" >
+        </md-input-container>
+
+        <md-input-container class="input-full-width first">
+          <input
+                  mdInput [(ngModel)]="avatar_id" placeholder="کد آواتار"
+                  required type="text" name="avatar_id">
+        </md-input-container>
+        <div *ngIf="buyCount" >{{buyCount.buy_count}}</div>
+
+        <button md-button  [disabled]="!formCtrl.form.valid" (click)="checkUserAvatar()">ساختن</button>
+
+      </div>
+
+    </md-card-content>
+
+
+  </md-card>
+  </form>
+<br/>
+<br/>
+<br/>
+
+<md-card *ngIf="payments" class="payments-card-info">
+  <div class="card-content" dir="rtl">
+    <md-list>
+      <h3 md-subheader>پرداخت ها</h3>
+      <table style="width:100%">
+        <tr>
+          <!-- <th>شناسه</th> -->
+          <th>فروشگاه</th>
+          <th>مقدارخرید</th>
+          <th>زمان خرید</th>
+          <!-- <th>زمان مصرف</th> -->
+        </tr>
+
+        <tr *ngFor="let payment of payments.userpayments">
+          <!-- <th>{{payment.id}}</th> -->
+          <th>{{payment.store}}</th>
+          <th>{{payment.amount}}</th>
+          <th>{{payment.created_at}}</th>
+          <!-- <th>{{payment.updated_at}}</th> -->
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>کل خرید ریالی</th>
+          <th>کل خرید ریالی +اپ استور</th>
+          <th>اپ استور</th>
+        </tr>
+        <tr>
+          <th>{{payments.total}}</th>
+          <th>{{payments.total_with_sibche}}</th>
+          <th>{{payments.total_apple}}</th>
+        </tr>
+      </table>
+      <!-- </md-list-item> -->
+    </md-list>
+
+
+  </div>
+</md-card>

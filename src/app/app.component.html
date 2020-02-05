@@ -1,0 +1,20 @@
+<md-sidenav-container fullscreen="true">
+    <md-sidenav #sidenav *ngIf="authenticated == true" mode="side" opened="false" align="end" class="app-sidenav">
+        <app-sidebar></app-sidebar>
+    </md-sidenav>
+    <md-toolbar id="head1" color="primary" dir="rtl">
+        پنل مدیریت
+        <i *ngIf="authenticated == true" class="material-icons" (click)="sidenav.toggle()">swap_horiz</i>
+        <span class="app-toolbar-filler"></span>
+    </md-toolbar>
+    
+    
+    <div class="app-content" dir="rtl">
+        <progress-bar></progress-bar>    
+        <router-outlet></router-outlet>
+    </div>
+    <a scrollTo id="scroll" href="#head1"></a>
+    
+</md-sidenav-container>
+
+<simple-notifications [options]="options"></simple-notifications>

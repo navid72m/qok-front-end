@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: quizofkings-panel
+  namespace: qok-server-ng
+  labels:
+    app: qokserver
+    component: panel
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: qokserver
+        component: panel
+    spec:
+      imagePullSecrets:
+      - name: docker-quizofkings-com-regsecret
+      containers:
+      - name: panel
+        image: docker.quizofkings.com/qok/qok-frontend-ng:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,40 @@
+<md-card class="no-padding">
+    <md-toolbar color="primary">جستجوی تبلیغات</md-toolbar>
+    <div class="card-content">
+
+        <button (click)="search()"
+                class="btn" md-raised-button color="primary">لیست تبلیغات
+        </button>
+    </div>
+
+</md-card>
+
+<md-card *ngIf="list" class="no-padding">
+    <md-toolbar color="primary">نتایج</md-toolbar>
+    <div class="card-content" dir="rtl">
+          <table  style="width:100%">
+            <tr>
+              <th></th>
+              <th>
+                شناسه تبلیغ
+              </th>
+              <th>
+                عنوان
+              </th>
+              <th>
+                شناسه سوال
+              </th>
+              <th>
+                متن سوال
+              </th>
+            </tr>
+            <tr *ngFor="let ads of list">
+              <th><i md-list-icon class="material-icons" (click)="onSelect(ads)" mdTooltip="مشاهده‌ی جزئیات">open_in_new</i></th>
+              <th>{{ads.ad_id}} </th>
+              <th>{{ads.title}} </th>
+              <th>{{ads.question_id}} </th>
+              <th>{{ads.question}} </th>
+            </tr>
+          </table>
+    </div>
+</md-card>

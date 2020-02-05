@@ -1,0 +1,131 @@
+<form #formCtrl="ngForm" >
+
+<md-card >
+    <!--<div md-card-avatar class="create-header-image"></div>-->
+    <md-toolbar color="primary">پنل ساخت سوال</md-toolbar>
+    <!--<md-card-subtitle>Dog Breed</md-card-subtitle>-->
+
+  <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+
+  <md-card-content>
+
+
+            <!-- <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="advertise.publisher_id" placeholder="شناسه تبلیغ کننده"
+                   required type="number" name="publisher_id" >
+            </md-input-container> -->
+
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.question" placeholder="سوال"
+                   required type="text" name="question">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.choice1" placeholder="گزینه ۱"
+                   required type="text" name="choice1">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.choice2" placeholder="گزینه ۲"
+                   required type="text" name="choice2">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.choice3" placeholder="گزینه ۳"
+                   required type="text" name="choice3">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.choice4" placeholder="گزینه ۴"
+                   required type="text" name="choice4">
+            </md-input-container>
+
+            <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.correct_answer" placeholder="گزینه صحیح"
+                   required type="number" name="correct_answer">
+            </md-input-container>
+
+
+            <md-select   mdInput [(ngModel)]="questionview.status" placeholder="وضعیت"  class="input-full-width" name="status">
+              <md-option *ngFor="let stat of this.statChoices" [value]="stat.value" >
+                {{stat.value}}
+              </md-option>
+            </md-select>
+
+            <!-- <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="questionview.question" placeholder="وضعیت"
+                   required type="text" name="status">
+            </md-input-container> -->
+
+            <md-select   mdInput [(ngModel)]="questionview.category_id" placeholder="موضوع"  class="input-full-width" name="category">
+              <md-option *ngFor="let cat of this.cats" [value]="cat.id" >
+                {{cat.title}}
+              </md-option>
+            </md-select>
+
+
+
+<md-card-actions class="buttons">
+  <button md-button   class="btn" (click)= "updateDetails()">ساختن</button>
+
+</md-card-actions>
+
+  </md-card-content>
+
+</md-card>
+
+
+</form>
+
+<update-advertise [advertiseId]="questionview.id" *ngIf="questionview.id" ></update-advertise>
+<!-- <advertise  (onCreateAds)= "onCreateAdvertise($event)"  (getAdId)= "getAdvertiseId($event)" (getCategories) = "getCategories($event)"  *ngIf="this.showAdvertise"> </advertise>
+<>
+
+
+
+<div *ngIf="questionview">
+
+  <div>
+    <label>id: </label><div> {{questionview.id}} </div> </div>
+  <div>
+    <label>Question: </label>
+    <div> <textarea rows="10" cols="35" [(ngModel)]=questionview.question placeholder="question"></textarea></div>
+  </div>
+
+  <div>
+    <label>choice1: </label> <div><textarea rows="10" cols="35" [(ngModel)]=questionview.choice1 placeholder="choice1"></textarea></div>
+  </div>
+
+  <div>
+    <label>choice2: </label> <div><textarea rows="10" cols="35" [(ngModel)]=questionview.choice2 placeholder="choice2"></textarea></div>
+  </div>
+
+  <div>
+    <label>choice3: </label> <div><textarea rows="10" cols="35" [(ngModel)]=questionview.choice3 placeholder="choice3"></textarea></div>
+  </div>
+
+  <div>
+    <label>choice4: </label> <div><textarea rows="10" cols="35" [(ngModel)]=questionview.choice4 placeholder="choice4"></textarea></div>
+  </div>
+
+  <div>
+    <label>correct_answer: </label>
+    <div>
+      <select [(ngModel)]="questionview.correct_answer">
+          <option *ngFor="let corrans of correct_answerChoices" [value]="corrans.value">{{corrans.value}}</option>
+      </select></div>
+  </div>
+
+  <div>
+    <label>status: </label>
+      <div>
+        <select [(ngModel)]="questionview.status">
+            <option *ngFor="let status of statusChoices" [value]="status.value">{{status.value}}</option>
+        </select>
+      </div>
+  </div>
+
+ <button (click)="updateDetails()">Save</button>
+  <button (click)="goBack()">Back</button>
+</div> -->

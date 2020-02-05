@@ -1,0 +1,46 @@
+<md-input-container class="input-full-width">
+    <input mdInput [(ngModel)]="news.title" placeholder="عنوان"
+            required type="text" name="title">
+</md-input-container>
+
+<md-input-container class="input-full-width">
+    <input mdInput [(ngModel)]="news.link_title" placeholder="عنوان لینک"
+            required type="text" name="link_title">
+</md-input-container>
+
+<md-input-container class="input-full-width">
+    <input mdInput [(ngModel)]="news.link_url" placeholder="آدرس لینک"
+            required type="text" name="link_url">
+</md-input-container>
+<!--color='accent'-->
+
+<md-input-container class="input-full-width">
+<!--<md-error>{{tagField.errors ? tagField.errors.missedTag : null}}</md-error>-->
+    <input mdInput [(ngModel)]="news.image_file_name" placeholder="نام فایل عکس"
+            required type="text" name="image_file_name">
+</md-input-container>
+
+<my-date-picker class="date-picker" [(ngModel)]="news.expiration_time" [options]="myDatePickerOptions"
+name="expiration_time"     (dateChanged)="onDateChanged($event)" [(ngModel)]="selectedDate"></my-date-picker>
+<div class="disabled">
+<md-input-container class="input-full-width">
+    <input mdInput value="تاریخ انقضا"
+            disabled type="text" name="datepicker-label">
+            <input value="1" type="checkbox" name="expiration_now" [(ngModel)]="news.expiration_now" ng-checked="expression"> همین حالا     
+</md-input-container>
+</div>
+
+<md-input-container class="input-textarea">
+    <textarea mdInput [(ngModel)]="news.text" placeholder="متن"
+            required type="text" name="text"></textarea>
+</md-input-container>
+
+<md-input-container class="input-textarea">
+    <textarea mdInput [(ngModel)]="news.short_text" placeholder="متن کوتاه"
+            required type="text" name="short_text"></textarea>
+</md-input-container>
+
+<md-input-container  class="input-textarea">
+  <input mdInput [(ngModel)]="news.min_player_level" placeholder="حداقل سطح"
+          required type="number" name="min_player_level">
+</md-input-container>

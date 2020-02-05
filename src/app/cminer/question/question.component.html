@@ -1,0 +1,201 @@
+
+<md-tab-group class="tab-container batches-tab">
+    <md-tab class="tabs" label="جستجو سوالات کاربر">
+
+      <md-card class="card-content card-parent">
+          <md-list>
+              <div class="card-content d-inline-block margin-padding-right-10">
+                  <md-input-container class="input-full-width">
+                      <input mdInput [value]="userQuestion.player_id" placeholder="آیدی بازیکن انتخاب شده" readonly>
+                  </md-input-container>
+
+                  <md-input-container class="input-full-width">
+                      <input #search matInput autocomplete="off" (keyup)="leven(search.value)" placeholder="جستجو نام کاربر">
+                      <div class="myAutoComplete" *ngIf="users" #autoCompelete>
+                          <ul class="user-list">
+                              <li class="hoverable" *ngFor="let user of users " (click)="SelectUser(user.user_id)">
+                                  <span>{{ user.username }}</span>
+                              </li>
+                          </ul>
+                      </div>
+
+                  </md-input-container>
+                  <button [disabled]="!userQuestion.player_id" class="btn" md-raised-button color="primary" (click)="SearchUserQuestions()">
+                     جستجو سولات کاربر
+                  </button>
+                  <button [disabled]="!userQuestionsData.length"  class="btn" md-raised-button color="warn" (click)="ClearSeach()">
+                      جستجو جدید
+                  </button>
+              </div>
+
+          </md-list>
+
+          <md-list *ngIf="showUserQuestionTable">
+              <div class="batch-inner">
+
+
+                  <div class="question-content" >
+                      <table class="batch-table" style="width:100%">
+                          <tr>
+
+                              <th>شماره</th>
+                              <th>سوال</th>
+                              <th>گزینه 1</th>
+                              <th>گزینه 2</th>
+                              <th>گزینه 3</th>
+                              <th>گزینه 4</th>
+                              <th>پاسخ صحیح</th>
+                              <th>رد کردن</th>
+                              <th>قبول کردن</th>
+                              <th>وضعیت کنونی</th>
+                              <th>دسته سوال</th>
+
+                          </tr>
+
+                          <tr *ngFor="let data of userQuestionsData;">
+
+                              <td>{{data.id}}</td>
+                              <td>{{data.question}}</td>
+                              <td>
+                                 {{data.choice1}}
+                              </td>
+                              <td>
+                                 {{data.choice2}}
+                              </td>
+                              <td>
+                                 {{data.choice3}}
+                              </td>
+                              <td>
+                                  {{data.choice4}}
+                              </td>
+                              <td>
+                                  {{data.correct_answer}}
+                              </td>
+                              <td>
+
+                                  <button (click)="RejectQuestion(data)" class="btn" md-raised-button color="warn">
+                                    رد کردن سوال
+                                  </button>
+                              </td>
+                              <td>
+
+                                  <button (click)="AcceptQuestion(data)" class="btn" md-raised-button color="primary">
+                                     قبول کردن سوال
+                                  </button>
+                              </td>
+                              <td>
+                                  <span id="el-{{data.id}}">
+                                       <i *ngIf="StatusEvent(data,false) == 'REJECTED'" class="material-icons sticky-shortcut red-color">close</i>
+                                       <i *ngIf="StatusEvent(data,false) == 'ACCEPTED'" class="material-icons sticky-shortcut red-color">check</i>
+
+                                  </span>
+                              </td>
+                              <td>
+                                  {{getCategory(data.category_id)}}
+                              </td>
+                          </tr>
+                      </table>
+                  </div>
+
+              </div>
+
+          </md-list>
+      </md-card>
+
+    </md-tab>
+
+    <md-tab class="tabs" label="جستجو سوال">
+
+        <md-card class="card-content card-parent">
+            <md-list>
+                <div class="card-content d-inline-block margin-padding-right-10">
+                    <md-input-container class="input-full-width">
+                        <input mdInput type="number" [(ngModel)]="singleQuestionSearch.id" placeholder="آیدی سوال">
+                    </md-input-container>
+
+                    <button [disabled]="!singleQuestionSearch.id" class="btn" md-raised-button color="primary" (click)="SearchQuestionById()">
+                         جستجو سوال
+                    </button>
+                    <button [disabled]="!singleQuestionData.question_details"  class="btn" md-raised-button color="warn" (click)="ClearSeach()">
+                        جستجو جدید
+                    </button>
+                </div>
+
+            </md-list>
+
+            <md-list *ngIf="showSingleQuestionTable">
+                <div class="batch-inner">
+
+
+                    <div class="question-content" >
+                        <table class="batch-table" style="width:100%">
+                            <tr>
+                                <th>شماره</th>
+                                <th>سوال</th>
+                                <th>گزینه 1</th>
+                                <th>گزینه 2</th>
+                                <th>گزینه 3</th>
+                                <th>گزینه 4</th>
+                                <th>پاسخ صحیح</th>
+                                <th>وضعیت</th>
+                                <th>دسته سوال</th>
+                            </tr>
+                            <tr>
+                                <td>{{singleQuestionData.question_details.id}}</td>
+                                <td>
+                                    <mat-input-container>
+                                        <input mdInput type="text" (keyup)="transformToUpdate()" [(ngModel)]="singleQuestionData.question_details.question">
+                                    </mat-input-container>
+                                </td>
+                                <td>
+                                    <mat-input-container>
+                                        <input mdInput type="text" (keyup)="transformToUpdate()" [(ngModel)]="singleQuestionData.question_details.choice1">
+                                    </mat-input-container>
+
+                                </td>
+                                <td>
+                                    <mat-input-container>
+                                        <input mdInput type="text" (keyup)="transformToUpdate()" [(ngModel)]="singleQuestionData.question_details.choice2">
+                                    </mat-input-container>
+                                </td>
+                                <td>
+                                    <mat-input-container>
+                                        <input mdInput type="text" (keyup)="transformToUpdate()" [(ngModel)]="singleQuestionData.question_details.choice3">
+                                    </mat-input-container>
+                                </td>
+                                <td>
+                                    <mat-input-container>
+                                        <input mdInput type="text" (keyup)="transformToUpdate()" [(ngModel)]="singleQuestionData.question_details.choice4">
+                                    </mat-input-container>
+                                </td>
+                                <td>
+                                  {{singleQuestionData.question_details.correct_answer}}
+                                </td>
+                                <td>
+                                    <i *ngIf="singleQuestionData.question_details.status == 'REJECTED'" class="material-icons sticky-shortcut red-color">close</i>
+                                    <i *ngIf="singleQuestionData.question_details.status == 'ACCEPTED'" class="material-icons sticky-shortcut red-color">check</i>
+
+                                </td>
+                                <td>
+                                    <md-select  (change)="transformToUpdate()"  mdInput [(ngModel)]="updateCategory.category_id" placeholder="موضوع"  class="input-full-width text-right" name="status">
+                                        <md-option *ngFor="let cat of this.cats" [value]="cat.id" >
+                                            {{cat.title}}
+                                        </md-option>
+                                    </md-select>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </md-list>
+            <button *ngIf="showSingleQuestionTable" [disabled]="updateQuestion.id == null"  class="btn margin-right-20" md-raised-button color="primary" (click)="UpdateQuestionCrud()">
+                بروز رسانی
+            </button>
+        </md-card>
+    </md-tab>
+
+
+</md-tab-group>

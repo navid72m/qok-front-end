@@ -1,0 +1,124 @@
+<md-card class="stat-view-card">
+    
+    <md-toolbar color="primary">آمار</md-toolbar>
+        <my-date-picker class="date" name="created_at" [options]="myDatePickerOptions"
+            [(ngModel)]="selectedDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
+       <div *ngIf="stat" class="card-content" dir="rtl">
+
+        <!-- <my-date-picker class="date-picker" [selDate]="selDate" [options]="myDatePickerOptions"
+            (dateChanged)="onDateChanged($event)" [(ngModel)]="selectedDate"></my-date-picker>
+        <div class="disabled">
+            <md-input-container>
+                <input mdInput value="تاریخ انقضا"
+                    disabled type="text" name="datepicker-label">
+            </md-input-container>
+        </div> -->
+        <div class="line"></div>
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.total_clans" placeholder="total clans"
+                    disabled type="number" name="total_clans">
+        </md-input-container>
+        
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clans_created" placeholder="clans created"
+                    disabled type="number" name="clans_created">
+        </md-input-container>
+        
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_games_created" placeholder="clan games created"
+                    disabled type="number" name="clan_games_created">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_games_finished" placeholder="clan games finished"
+                    disabled type="number" name="clan_games_finished">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_games_expired" placeholder="clan games expired"
+                    disabled type="number" name="clan_games_expired">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_donation_amount" placeholder="clan donation amount"
+                    disabled type="number" name="clan_donation_amount">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.users_clan_amount" placeholder="users clan amount"
+                    disabled type="number" name="users_clan_amount">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_size_average" placeholder="clan size average"
+                    disabled type="number" name="clan_size_average">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_kick_average" placeholder="clan kick average"
+                    disabled type="number" name="clan_kick_average">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_left_average" placeholder="clan left average"
+                    disabled type="number" name="clan_left_average">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_user_promote" placeholder="clan user promote"
+                    disabled type="number" name="clan_user_promote">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_user_demote" placeholder="clan user demote"
+                    disabled type="number" name="clan_user_demote">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_avg" placeholder="clan played avg"
+                    disabled type="number" name="clan_played_avg">
+        </md-input-container>
+        
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_count" placeholder="clan played count"
+                    disabled type="number" name="clan_played_count">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_a" placeholder="clan played a"
+                    disabled type="number" name="clan_played_a">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_count_a" placeholder="clan played count a"
+                    disabled type="number" name="clan_played_count_a">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_b" placeholder="clan played b"
+                    disabled type="number" name="clan_played_b">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_played_count_b" placeholder="clan played count b"
+                    disabled type="number" name="clan_played_count_b">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.hint_usage_amount" placeholder="hint usage amount"
+                    disabled type="number" name="hint_usage_amount">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.hint_usage_count" placeholder="hint usage count"
+                    disabled type="number" name="hint_usage_count">
+        </md-input-container>
+
+        <md-input-container class="input-full-width">
+            <input mdInput [(ngModel)]="stat.clan_round_count" placeholder="clan round count"
+                    disabled type="number" name="clan_round_count">
+        </md-input-container>
+
+        <div class="footer"></div>
+       </div>
+   </md-card>

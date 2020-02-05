@@ -1,0 +1,96 @@
+
+<md-tab-group class="tab-container batches-tab">
+    <md-tab class="tabs" label="جستجو شماره کارت">
+
+      <md-card class="card-content card-parent">
+          <md-list>
+              <div class="card-content d-inline-block margin-padding-right-10">
+                  <md-input-container class="input-full-width">
+                      <input mdInput  placeholder="شماره" [(ngModel)]="zarinPalModel.pan">
+                  </md-input-container>
+
+                  <md-select mdInput [(ngModel)]="zarinPalModel.type"  placeholder="نوع پیگیری"  class="input-full-width zarin-select text-right input-data" name="input_data">
+                      <md-option  value="pan">
+                          شماره کارت
+                      </md-option>
+                      <md-option  value="transaction_id">
+                          شماره تراکنش
+                      </md-option>
+                  </md-select>
+
+                  <button  class="btn" md-raised-button color="primary" (click)="checkTransaction()">
+                     جستجو
+                  </button>
+                  <button  class="btn" md-raised-button color="warning" (click)="downloadZarinpal()">
+                      دانلود csvv
+                  </button>
+
+              </div>
+
+          </md-list>
+
+          <md-list *ngIf="zarinPalpanData.length">
+              <div class="batch-inner">
+
+
+                  <div class="question-content" >
+                      <table class="batch-table" style="width:100%">
+                          <tr>
+
+                              <th>شماره</th>
+                              <th>مقدار</th>
+                              <th>وضعیت</th>
+                              <th>توضیحات</th>
+                              <th>بانک</th>
+                              <th>تاریخ</th>
+                              <th>ساعت</th>
+
+
+                          </tr>
+
+                          <tr *ngFor="let data of zarinPalpanData;">
+
+                              <td>{{data.authority_info.id}}</td>
+                              <td>{{data.amount}}</td>
+                              <td>
+                                 {{data.confirmed}}
+                              </td>
+                              <td>
+                                 {{data.description}}
+                              </td>
+                              <td>
+                                  {{data.card_info.issuer.name}}
+                              </td>
+                              <td>
+                                 {{data.created | jalali }}
+                              </td>
+                              <td>
+                                  {{CutTheTime(data.created) }}
+                              </td>
+
+                              <!--<td>-->
+
+                                  <!--<button (click)="RejectQuestion(data)" class="btn" md-raised-button color="warn">-->
+                                    <!--رد کردن سوال-->
+                                  <!--</button>-->
+                              <!--</td>-->
+                              <!--<td>-->
+
+                                  <!--<button (click)="AcceptQuestion(data)" class="btn" md-raised-button color="primary">-->
+                                     <!--قبول کردن سوال-->
+                                  <!--</button>-->
+                              <!--</td>-->
+                          </tr>
+                      </table>
+                  </div>
+
+              </div>
+
+          </md-list>
+      </md-card>
+
+    </md-tab>
+
+
+
+</md-tab-group>

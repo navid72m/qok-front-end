@@ -1,0 +1,32 @@
+.input-full-width {
+    display: list-item;
+    list-style-type: none;
+    width: 40%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.disabled {
+    width: 20%;
+    float: right;
+    margin-right: 2em;
+    position: relative;
+    bottom: 0.8em;
+}
+
+.input-textarea {
+    display: block;
+    float: right;
+    min-width: 60%;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.date-picker {
+    direction: ltr;
+    width: 35%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}

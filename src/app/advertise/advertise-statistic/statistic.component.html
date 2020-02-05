@@ -1,0 +1,84 @@
+
+<md-card>
+
+    <md-toolbar color="primary">  تعداد تبلیغات کلیکی روزانه</md-toolbar>
+    <md-card-content >
+        <div class="card-content" dir="rtl">
+            <h3 class="right">روزانه </h3>
+            <form #ClickDay="ngForm" (ngSubmit)="onSubmitDay()">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="click_day"   name="date" placeholder=" تعداد روز(پیش فرض ۱ روز)" class="form-control"  type="number">
+                </md-input-container>
+                <button md-button class="submit-btn" type="button" [disabled]="!ClickDay.form.valid" (click)="onSubmitClickDay(click_day)"> مشاهده</button>
+            </form>
+            <table>
+                <tr>
+                    <th>تعداد</th>
+
+                </tr>
+                    <tr>
+                        <td>{{ clickCount }}</td>
+                    </tr>
+
+            </table>
+        </div>
+
+
+    </md-card-content>
+
+
+    <md-toolbar color="primary">  گزارشات آماری تبلیغات</md-toolbar>
+
+    <md-card-content >
+        <div class="card-content" dir="rtl">
+            <h3 class="right">روزانه (حداکثر ۱۰۰ روز)</h3>
+            <form #Day="ngForm" (ngSubmit)="onSubmitDay()">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="day"   name="date" placeholder=" تعداد روز(پیش فرض ۵ روز)" class="form-control"  type="number">
+                </md-input-container>
+                <button md-button class="submit-btn" type="button" [disabled]="!Day.form.valid" (click)="onSubmitDay(day)"> مشاهده</button>
+            </form>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>خرید</th>
+                </tr>
+                <ng-template ngFor let-datasetday [ngForOf]="daily" let-i="index" >
+                    <tr>
+                        <td>{{ datasetday.click_day }}</td>
+                        <td>{{ datasetday.total_cost }}</td>
+                    </tr>
+                </ng-template>
+            </table>
+        </div>
+
+        <div class="card-content" dir="rtl">
+            <h3 class="right">ماهانه (حداکثر ۱۰ ماه)</h3>
+            <form #Month="ngForm" (ngSubmit)="onSubmitDay()">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="month" name="month" placeholder=" تعداد ماه(پیش فرض ۵ ماه)" class="form-control"  type="number">
+                </md-input-container>
+                <button md-button class="submit-btn" type="button" [disabled]="!Month.form.valid" (click)="onSubmitMonth(month)"> مشاهده</button>
+            </form>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>خرید</th>
+                </tr>
+                <ng-template ngFor let-datasetmonth [ngForOf]="monthly" let-i="index" >
+                    <tr>
+                        <td>{{ datasetmonth.click_month }}</td>
+                        <td>{{ datasetmonth.total_cost }}</td>
+                    </tr>
+                </ng-template>
+            </table>
+        </div>
+    </md-card-content>
+
+</md-card>
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<md-card *ngIf="usersview" class="users-list">
+    <md-toolbar color="primary">
+        <md-toolbar-row>
+                  <span class="sticky-shortcut">لیست کاربران انتخاب شده</span>
+                  <span class="sticky-spacer"></span>
+                  <md-progress-spinner *ngIf="queryInProgress"
+                    class="sticky-progress-spinner"
+                    color="warn"
+                    [mode]="mode">
+                  </md-progress-spinner>
+        </md-toolbar-row>
+    </md-toolbar>
+
+    <md-card-header *ngIf="doesUserExist">
+      <!-- <button class="header-button" (click)="blockMultiple()" md-button >بلاک</button> -->
+      <button class="header-button" (click)="clearList()" md-button >پاک کردن لیست</button>
+      <button class="header-button" (click)="increaseCoins()" md-button >افزایش سکه‌ها</button>
+      <button class="header-button" (click)="unblockMultiple()" md-button >آنبلاک</button>
+      <md-input-container class="coins-input">
+
+        <input [(ngModel)]="coins" mdInput type="number" placeholder="سکه">
+      </md-input-container>
+    </md-card-header>
+
+    <div class="card-content" dir="rtl">
+            <md-list>
+
+            <md-list-item *ngFor="let user of usersview">
+
+                <h4 md-line *ngIf="user.username">{{user.username}}</h4>
+                <h4 md-line *ngIf="user.code">{{user.code}}</h4>
+                <i class="material-icons" (click)="clearUser(user)" mdTooltip="حذف از لیست" >clear</i>
+            </md-list-item>
+            </md-list>
+    </div>
+</md-card>

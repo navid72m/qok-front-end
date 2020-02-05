@@ -1,0 +1,144 @@
+<md-card class="percent-info-card" *ngIf="userStat">
+    <div class="card-content" dir="rtl" >
+      <table style="width:100%">
+       <tr>
+          <th><div >برد</div></th>
+          <th>
+            <md-input-container class="percentage-input">
+                <input class="percent-input" mdInput placeholder="تعداد"
+                       type="number" [(ngModel)]="userStat.won_number_inp" >
+            </md-input-container>
+          </th>
+          <th>
+              <md-input-container class="percentage-input">
+                  <input disabled class="percent-input" mdInput placeholder="تعداد"
+                         type="number" [(ngModel)]="userStat.won_number" >
+            </md-input-container>
+              <!-- <md-slider
+                class="slider"
+                [(ngModel)]="userStat.won_percent"
+                (change)="winChanged(userStat)"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                [thumb-label]="thumbLabel"
+                [tick-interval]="tickInterval"
+                [value]="userStat.won_percent"
+                [disabled]="disabled"
+                [invert]="invert"
+                [vertical]="vertical">
+              </md-slider> -->
+          </th>
+          <th><md-input-container class="percentage-input">
+                <input disabled class="percent-input" mdInput placeholder="درصد"
+                       type="number" [(ngModel)]="userStat.won_percent" > <!--(change)="winChanged(userStat)"-->
+          </md-input-container></th>
+          <!--(input)="onInputChange($event)"-->
+       </tr>
+
+       <tr>
+          <th><div >باخت</div></th>
+          <th>
+            <md-input-container class="percentage-input">
+                <input class="percent-input" mdInput placeholder="تعداد"
+                       type="number" [(ngModel)]="userStat.lost_number_inp" >
+          </md-input-container>
+          </th>
+          <th>
+              <md-input-container class="percentage-input">
+                  <input  disabled class="percent-input" mdInput placeholder="تعداد"
+                         type="number" [(ngModel)]="userStat.lost_number" >
+            </md-input-container>
+              <!-- <md-slider
+                class="slider"
+                [(ngModel)]="userStat.lost_percent"
+                (change)="lostChanged(userStat)"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                [thumb-label]="thumbLabel"
+                [tick-interval]="tickInterval"
+                [value]="userStat.lost_percent"
+                [disabled]="disabled"
+                [invert]="invert"
+                [vertical]="vertical">
+              </md-slider> -->
+          </th>
+          <th><md-input-container class="percentage-input">
+                <input disabled class="percent-input" mdInput placeholder="درصد"
+                       type="number" [(ngModel)]="userStat.lost_percent" > <!--(change)="lostChanged(userStat)"-->
+          </md-input-container></th>
+          <!--(input)="onInputChange($event)"-->
+       </tr>
+
+       <tr>
+          <th><div >مساوی</div></th>
+          <th>
+            <md-input-container class="percentage-input">
+                <input class="percent-input" mdInput placeholder="تعداد"
+                       type="number" [(ngModel)]="userStat.tie_number_inp" >
+          </md-input-container>
+          </th>
+          <th>
+              <md-input-container class="percentage-input">
+                  <input disabled class="percent-input" mdInput placeholder="تعداد"
+                         type="number" [(ngModel)]="userStat.tie_number" >
+            </md-input-container>
+              <!-- <md-slider
+                class="slider"
+                [(ngModel)]="userStat.tie_percent"
+                (change)="tieChanged(userStat)"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                [thumb-label]="thumbLabel"
+                [tick-interval]="tickInterval"
+                [value]="userStat.tie_percent"
+                [disabled]="disabled"
+                [invert]="invert"
+                [vertical]="vertical">
+              </md-slider> -->
+          </th>
+          <th><md-input-container class="percentage-input">
+                <input disabled class="percent-input" mdInput placeholder="درصد"
+                       type="number" [(ngModel)]="userStat.tie_percent" > <!--(change)="tieChanged(userStat)"-->
+          </md-input-container></th>
+          <!--(input)="onInputChange($event)"-->
+       </tr>
+
+       <tr>
+          <th><div >بی اشتباه</div></th>
+          <th>
+            <md-input-container class="percentage-input">
+                <input class="percent-input" mdInput placeholder="تعداد"
+                       type="number" [(ngModel)]="userStat.perfect_number_inp" >
+          </md-input-container>
+        </th>
+          <th>
+              <md-input-container class="percentage-input">
+                  <input disabled class="percent-input" mdInput placeholder="تعداد"
+                         type="number" [(ngModel)]="userStat.perfect_number" >
+            </md-input-container>
+          </th>
+          <th></th>
+       </tr>
+
+       <tr>
+          <th><div >تعداد کل</div></th>
+          <th>
+              <md-input-container class="percentage-input">
+                  <input  disabled class="percent-input" mdInput placeholder="تعداد"
+                         type="number" [(ngModel)]="userStat.games_played" >
+            </md-input-container>
+          </th>
+          <th></th>
+       </tr>
+
+
+     </table>
+
+     <button md-button  class="sticky-shortcut" (click)="updatePercent(this.userStat)" > <!--[disabled]="userStat.disabled" -->
+               بروز‌ رسانی
+     </button>
+    </div>
+</md-card>

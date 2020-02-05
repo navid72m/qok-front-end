@@ -1,0 +1,50 @@
+.create-ads-card {
+    padding-bottom: 2em;
+}
+
+.input-full-width {
+    display: list-item;
+    width: 40%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.buttons {
+    margin-top: -20px;
+    margin-right: 1.5em;
+    clear: both;
+}
+
+.advertise-select {
+  margin-right: 3em;
+  /*margin-bottom: 2em;*/
+  /*display: block;*/
+}
+
+.category-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.category-margin {
+  margin: 10px;
+}
+.text-inside-grid {
+
+  width: 40%;
+  float: right;
+  margin-right: 2em;
+
+}
+
+.advertise-info {
+    display: list-item;
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    margin-left: 5em;
+    /*margin-bottom: 1.7em;*/
+    padding-bottom: 1em;
+}

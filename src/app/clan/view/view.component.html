@@ -1,0 +1,88 @@
+<md-toolbar color="primary" class="sticky">
+    <i class="material-icons sticky-shortcut" (click)="updateDetails()" mdTooltip="ذخیره">save</i>
+    <span class="sticky-spacer"></span> 
+    <i class="material-icons sticky-shortcut" (click)="showFriendsFunc()" mdTooltip="دوستان">people</i>
+</md-toolbar>
+
+<md-tab-group class="tab-container" (selectedIndexChange)="onTabIndexChange($event)" [selectedIndex]="selectedIndexTab">
+  <md-tab class="tabs" label="مشاهده جزئیات گروه">
+    <md-card class="user-info-card" *ngIf="clanview">
+      <md-card-title class="user-info-title">
+          <span>نام گروه :</span>
+          {{clanview.title}}
+      </md-card-title>
+
+        <md-input-container class="increase-coin">
+            <input mdInput [(ngModel)]="newClanName" placeholder="تغییر نام گروه" type="text">
+        </md-input-container>
+        <i class="material-icons increase-coin-button" (click)="changeClanName()" mdTooltip="تغییر نام گروه">check_circle_outline</i>
+      <md-card-content>
+
+<md-select class="user-info user-info-stat" disabled placeholder="وضعیت" [(ngModel)]="clanview.status">
+<md-option class="user-info-stat" *ngFor="let status of statusChoices" [value]="status.value">
+{{status.value}}
+</md-option>
+</md-select>
+        <md-input-container class="user-info">
+          <input mdInput [(ngModel)]="clanview.score" placeholder="امتیاز" type="number">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput [(ngModel)]="clanview.lost_count" placeholder="تعداد باخت ها" type="number">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput [(ngModel)]="clanview.tie_count" placeholder="تعداد تساوی" type="number">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput [(ngModel)]="clanview.won_count" placeholder="تعداد بردها" type="number">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput [(ngModel)]="clanview.perfect_games" placeholder="تعداد بازی بی اشتباه" type="number">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput placeholder="تعداد بازی ها" disabled value="{{clanview.games_played}}">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput placeholder="clan id" disabled value="{{clanview.clan_id}}">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput placeholder="clan shardid" disabled value="{{clanview.shard_id}}">
+        </md-input-container>
+
+        <md-input-container class="user-info">
+          <input mdInput placeholder="unique clan id" disabled value="{{clanview.unique_clan_id}}">
+        </md-input-container>
+
+      </md-card-content>
+
+
+
+      <div class="footer"></div>
+    </md-card>
+    <md-card class="user-info-card clan-members right" *ngIf="usersview">
+    <div class="users-list">
+    <md-toolbar color="primary">لیست کاربران</md-toolbar>
+          <div class="card-content" dir="rtl">
+              <md-list>
+                  <md-list-item class="show-list" *ngFor="let userview of usersview">
+                      <h4 class="show-details small-margin-left"  (click)="onSelectUserId(userview.user_id)" *ngIf="userview.username">{{userview.username}}</h4>
+                      <h5 class="show-details" *ngIf="userview.is_owner">مدیر</h5>
+                      <h5 class="show-details" *ngIf="userview.is_assistant">معاون</h5>
+                      <i class="material-icons" (click)="onAddUser(userview)"   mdTooltip="اضافه به لیست">add</i>
+                      <i class="material-icons" (click)="onSelectClanUserId(userview.user_id)"   mdTooltip="لیست سوالات">list</i>
+                  </md-list-item>
+              </md-list>
+          </div>
+      </div>
+    </md-card>
+    <md-card class="">
+          <clan-list-user *ngIf="usersview" class="sticky" [usersview]="selectedUsers" (onClearUser)="onClearUser($event)"></clan-list-user>
+      </md-card>
+  </md-tab>
+</md-tab-group>

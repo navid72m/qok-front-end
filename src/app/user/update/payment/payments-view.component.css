@@ -1,0 +1,35 @@
+.sticky {
+    height: 3em;
+}
+
+.sticky-spacer {
+    flex: 1 1 auto;
+}
+.sticky-shortcut {
+    position: relative;
+    bottom: 95%;
+}
+
+.friends-info-card {
+    z-index: 1;
+}
+.holder{
+    padding: 20px;
+}
+h3 {
+    font-family: IRANSansWeb !important;
+}
+
+md-list-item:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+
+.buttons > button{
+    text-align: center;
+    font-size:17px;
+    border-radius: 3px;
+}
+/*table, th, td {
+    border: 1px solid black;
+}*/

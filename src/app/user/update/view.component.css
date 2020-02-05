@@ -1,0 +1,160 @@
+/deep/ .mat-tab-label{
+  font-family: IRANSansWeb !important;
+}
+
+.sticky {
+	  /* position: -webkit-sticky;     */
+	 position: sticky; 
+	  top: 0;  
+    height: 3em;   
+    z-index: 2;  
+}
+
+/* .sticky-row {
+  position: relative;
+  bottom: 70px !important;
+} */
+
+/* .tabs {
+  position: relative;
+  z-index: 1;
+} */
+
+/*.example-icon {
+  padding: 0 14px;
+}*/
+
+
+.time-class
+{
+    direction: ltr;
+    text-align: center;
+}
+.sticky-spacer {
+  flex: 1 1 auto;
+}
+
+.sticky-shortcut {
+  /*padding: 0 14px;*/
+   margin-right: 20px;
+  /* position: relative;
+  bottom: 95%;  */
+}
+
+.material-icons:hover {
+    /*background-color: rgb(0, 188, 212);*/
+    cursor: pointer;
+}
+
+.user-info-card {
+  position: relative;
+  z-index: 1;
+  /*float: right;*/
+  padding-bottom: 2em;
+  padding-top: 2em;
+  margin-bottom: 3em;
+}
+
+.device-info-card {
+  padding-top: 1.5em;
+  /*float: right;*/
+  /*width: 15%;*/
+}
+
+.user-info-title {
+  /*margin-top: 10px;*/
+  margin-right: 2em;
+  display: inline;
+}
+
+.friends-card {
+  margin-bottom: 50px;
+}
+
+h3 {
+    font-family: IRANSansWeb !important;
+}
+
+md-list-item:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.paying-image {
+  width: 40px;
+  height: 40px;
+  /*margin-right: 1%;*/
+  /*margin-left: -4%;*/
+  /* background: red; */
+  /* display: inline-block; */
+  /* margin: 3em; */
+  /* background-image: url('../../../assets/img/dollar-coins.png');  */
+  /* background-size: contain; */
+  /* background-repeat: no-repeat; */
+  /* z-index: 1000; */
+}
+
+.increase-coin {
+  display: inline-block;
+  width: 12%;
+   margin-right: 2%; 
+}
+
+.increase-coin-button {
+  position: relative;
+  top: 0.5em;
+}
+
+.user-info {
+    display: list-item;
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    margin-left: 5em;
+    /*margin-bottom: 1.7em;*/
+    padding-bottom: 1em;
+}
+
+.user-info-stat {
+  margin-top: 1em !important;
+}
+
+.user-select {
+  margin-right: 3em;
+  /*margin-bottom: 2em;*/
+  /*display: block;*/
+}
+
+.devices-info-title {
+  margin-right: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+.device-info {
+  width: 9%;
+  margin-right: 2em;
+}
+
+.device-container {
+  width: 90%;
+  padding: 2em;
+  border-bottom: 2px solid #e3e3e3;
+}
+
+.device-container:last-child {
+  border-bottom: none;
+}
+
+.footer {
+  clear: both; 
+}
+
+.hide {
+  /* display:none; */
+  /* visibility: hidden; */
+}

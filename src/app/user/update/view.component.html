@@ -1,0 +1,321 @@
+<md-toolbar color="primary" class="sticky" *ngIf="userview">
+  <!-- <md-toolbar-row class="sticky-row"> -->
+    <!-- <span class="sticky-shortcut">میانبر ها</span> -->            
+    <!-- <button md-button class="sticky-shortcut" (click)="updateDetails()">ذخیره</button> -->
+    <i class="material-icons sticky-shortcut" (click)="updateDetails()" mdTooltip="ذخیره">save</i>
+    <i class="material-icons sticky-shortcut" (click)="openDialog()" mdTooltip="جست و جو">search</i>
+    <i class="material-icons sticky-shortcut" (click)="unblockLogin()" mdTooltip="باز کردن ورود">lock_open</i>
+    <i class="material-icons sticky-shortcut" (click)="unblockIp()" mdTooltip="باز کردن آی پی دستگاه ">phone_iphone</i>
+    <i class="material-icons sticky-shortcut" (click)="alertToUser(userview.id , 281352)" mdTooltip="هشدار به کاربر متخلف">add_alert</i>
+    <i class="material-icons sticky-shortcut" (click)="alertToUser(userview.id , 281403)" mdTooltip="اخطار به مدیر و معاونین گروه">call</i>
+    <i class="material-icons sticky-shortcut" (click)="alertToUser(userview.id , 281404)" mdTooltip="اخطار عضویت در گروه غیر اخلاقی ">warning</i>
+   <!-- <i class="material-icons sticky-shortcut" (click)="blockDevice()" mdTooltip="مسدود کردن">block</i>
+    <i class="material-icons sticky-shortcut" (click)="resetPassword()" mdTooltip="ریست پسورد">settings_backup_restore</i>-->
+    <span class="sticky-spacer"></span> 
+    <i class="material-icons sticky-shortcut" (click)="showFriendsFunc()" mdTooltip="دوستان">people</i>
+  <!-- </md-toolbar-row> -->
+</md-toolbar>
+
+<md-tab-group class="tab-container" (click)="onTabIndexChange($event)" [selectedIndex]="selectedIndexTab">
+  <md-tab class="tabs" label="مشاهده جزئیات کاربر">
+
+              <md-card class="user-info-card" *ngIf="userview">              
+                <img *ngIf="userview.is_paying == true" src="../../../assets/img/dollar-coins.png" class="paying-image" mdTooltip="کاربر پرداخت‌ کننده">
+                <md-card-title class="user-info-title">{{userview.username}}</md-card-title>
+
+                  <md-input-container class="increase-coin">
+                      <input mdInput [(ngModel)]="newUserName" placeholder="تغییر نام کاربری" type="text">
+                  </md-input-container>
+                  <i class="material-icons increase-coin-button" (click)="changeUserName()" mdTooltip="تغییر نام کاربری">check_circle_outline</i>
+
+
+                <md-input-container class="increase-coin">
+                  <input mdInput [(ngModel)]="coinIncreaseAmount" placeholder="افزایش سکه" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseCoin()" mdTooltip="افزایش تعداد سکه‌ها">add_circle_outline</i>
+<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-gold-cup">
+                  <input mdInput [(ngModel)]="goldCupIncreaseAmount" placeholder="افزایش کاپ طلا" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseGoldCup()" mdTooltip="افزایش تعداد کاپ های طلا">add_circle_outline</i>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-silver-cup">
+                  <input mdInput [(ngModel)]="silverCupIncreaseAmount" placeholder="افزایش کاپ نقره" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseSilverCup()" mdTooltip="افزایش تعداد کاپ های نقره">add_circle_outline</i>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-bronze-cup">
+                  <input mdInput [(ngModel)]="bronzeCupIncreaseAmount" placeholder="افزایش کاپ برنز" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseBronzeCup()" mdTooltip="افزایش تعداد کاپ های برنز">add_circle_outline</i>
+
+                <md-card-content>
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ برنز" disabled value="{{userview.award_details.bronze_cup}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ نقره" disabled value="{{userview.award_details.silver_cup}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ طلا" disabled value="{{userview.award_details.gold_cup}}">
+                  </md-input-container>
+                </md-card-content> 
+
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-weekly-gold-cup">
+                  <input mdInput [(ngModel)]="weeklyGoldCupIncreaseAmount" placeholder="افزایش کاپ طلا هفتگی" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseWeeklyGoldCup()" mdTooltip="افزایش تعداد کاپ های طلا هفتگی">add_circle_outline</i>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-weekly-silver-cup">
+                  <input mdInput [(ngModel)]="weeklySilverCupIncreaseAmount" placeholder="افزایش کاپ نقره هفتگی" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseWeeklySilverCup()" mdTooltip="افزایش تعداد کاپ های نقره هفتگی">add_circle_outline</i>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-input-container class="increase-weekly-bronze-cup">
+                  <input mdInput [(ngModel)]="weeklyBronzeCupIncreaseAmount" placeholder="افزایش کاپ برنز هفتگی" type="number">
+                </md-input-container>
+                <i class="material-icons increase-coin-button" (click)="increaseWeeklyBronzeCup()" mdTooltip="افزایش تعداد کاپ های برنز هفتگی">add_circle_outline</i>
+
+                <md-card-content>
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ برنز هفتگی" disabled value="{{userview.award_details.weekly_bronze_cup}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ نقره هفتگی" disabled value="{{userview.award_details.weekly_silver_cup}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="تعداد کاپ طلا هفتگی" disabled value="{{userview.award_details.weekly_gold_cup}}">
+                  </md-input-container>
+                </md-card-content>
+
+                <md-card-content>
+
+                  <view-friends *ngIf="showFriends" class="friends-card" [id]="userview.id" (onFindFriend)="onTabIndexChange($event)"></view-friends>
+
+                  <md-select class="user-info user-info-stat" placeholder="وضعیت" [(ngModel)]="userview.status">
+                    <md-option class="user-info-stat" *ngFor="let status of statusChoices" [value]="status.value">
+                      {{status.value}}
+                    </md-option>
+                  </md-select>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.coins" placeholder="سکه‌ها" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.level" placeholder="سطح" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.username_change_time" placeholder="تعداد دفعات تغییر نام کاربری" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.score" placeholder="امتیاز" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.weekly_score" placeholder="امتیاز هفتگی" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.trophies" placeholder="جام‌ها" type="number">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput [(ngModel)]="userview.email" name="email" placeholder="ایمیل" type="text">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="زمان ساخت" disabled value="{{userview.created_at}}">
+                  </md-input-container>
+
+                  <div style="overflow: hidden; max-width: 0px; max-height: 0px;">
+                    <input name="username" class="hide">
+                    <input name="password" type="password" class="hide">
+                  </div>            
+
+                 <!-- <md-input-container class="user-info">
+                    <input mdInput placeholder="ID" disabled value="{{userview.id}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="نام کاربری" disabled value="{{userview.username}}">
+                  </md-input-container>-->
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="کد دعوت" disabled value="{{userview.invitation_code}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="نام گروه" disabled value="{{userview.clan_name}}">
+                  </md-input-container>
+
+                  <md-input-container class="user-info">
+                    <input mdInput placeholder="شناسه گروه" disabled value="{{userview.clan_unique_id}}">
+                  </md-input-container>  
+
+                  <section class="user-select">
+                    <md-checkbox [(ngModel)]="valid" name="reset_pass" value="reset_pass">تغییر کلمه‌ی عبور</md-checkbox>
+                  </section>
+
+                  <md-input-container *ngIf="valid" class="user-info">
+                    <input mdInput [(ngModel)]="userview.password" placeholder="کلمه‌ی عبور" type="password">
+                  </md-input-container>
+
+
+                    <md-input-container class="user-info">
+                        <input mdInput [(ngModel)]="userview.username"  disabled placeholder="نام کاربری" type="text">
+                    </md-input-container>
+
+
+                    <md-input-container class="user-info">
+                        <input mdInput class="time-class" [(ngModel)]="userview.unlimited_games_expires_at"  disabled placeholder="آخرین زمان غیر فعال شدن بازی نامحدود" type="text">
+                    </md-input-container>
+
+                    <md-input-container class="user-info">
+                        <input mdInput [(ngModel)]="userview.id"  disabled placeholder="شناسه کاربری" type="text">
+                    </md-input-container>
+
+                    <md-input-container class="user-info">
+                        <input mdInput [(ngModel)]="userview.invited_number"  disabled placeholder="تعداد دعوت شونده" type="text">
+                    </md-input-container>
+
+                </md-card-content>
+
+                <div class="footer"></div>
+              </md-card>
+
+              <md-card class="device-info-card" *ngIf="userview">
+                <md-card-title class="devices-info-title">اطلاعات دستگاه‌های فعلی کاربر</md-card-title>
+
+                <md-card-content>
+                  <div class="device-container" *ngFor="let device of userview.devices">
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="زمان ساخت" disabled value="{{device.created_at}}">
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="زمان به روز رسانی" disabled value="{{device.updated_at}}">
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="شناسه دستگاه" disabled value="{{device.id}}">
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="ورژن اپ" disabled value="{{device.app_version}}">                    
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="مدل دستگاه" disabled value="{{device.device_type}}">
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="توکن" disabled value="{{device.push_token}}">
+                    </md-input-container>
+
+                    <md-input-container class="device-info">
+                      <input mdInput placeholder="یودی آی دی" disabled value="{{device.udid}}">
+                    </md-input-container>
+
+                    <md-checkbox disabled class="device-info" [checked]="device.is_root">
+                      روت
+                    </md-checkbox>
+
+                    <md-checkbox disabled class="device-info" [checked]="device.is_emulator">
+                      امولاتور
+                    </md-checkbox>
+                  </div>            
+                </md-card-content>
+                <div class="footer"></div>
+              </md-card>
+              <md-card class="device-info-card" *ngIf="userview">
+      <md-card-title class="devices-info-title">اطلاعات کل دستگاه‌های  کاربر</md-card-title>
+
+      <md-card-content>
+        <div class="device-container" *ngFor="let device of userview.all_devices">
+          <md-input-container class="device-info">
+            <input mdInput placeholder="زمان ساخت" disabled value="{{device.created_at}}">
+          </md-input-container>
+
+          <md-input-container class="device-info">
+            <input mdInput placeholder="زمان به روز رسانی" disabled value="{{device.updated_at}}">
+          </md-input-container>
+          <md-input-container class="device-info">
+            <input mdInput placeholder="شناسه دستگاه" disabled value="{{device.id}}">
+          </md-input-container>
+
+          <md-input-container class="device-info">
+            <input mdInput placeholder="ورژن اپ" disabled value="{{device.app_version}}">
+          </md-input-container>
+
+          <md-input-container class="device-info">
+            <input mdInput placeholder="مدل دستگاه" disabled value="{{device.device_type}}">
+          </md-input-container>
+
+          <md-input-container class="device-info">
+            <input mdInput placeholder="توکن" disabled value="{{device.push_token}}">
+          </md-input-container>
+
+          <md-input-container class="device-info">
+            <input mdInput placeholder="یودی آی دی" disabled value="{{device.udid}}">
+          </md-input-container>
+
+          <md-checkbox disabled class="device-info" [checked]="device.is_root">
+            روت
+          </md-checkbox>
+
+          <md-checkbox disabled class="device-info" [checked]="device.is_emulator">
+            امولاتور
+          </md-checkbox>
+        </div>
+      </md-card-content>
+      <div class="footer"></div>
+    </md-card>
+
+              
+
+  </md-tab>
+  <md-tab class="tabs" label="پاسخگویی" mdTooltip="درصد پاسخگویی" [disabled]="statsDisabled">
+
+              <div *ngIf="userview">
+                <view-statistics [id]="userview.id"></view-statistics>
+              </div>
+
+  </md-tab>
+  <md-tab class="tabs" label="پرداخت‌ها" mdTooltip="دریافت لیست پرداخت‌ها" [disabled]="paymentsDisabled">
+
+              <div *ngIf="userview">
+                <view-payments [id]="userview.id"></view-payments>
+              </div>
+
+  </md-tab>
+  <md-tab class="tabs" label="درصد برد و باخت" mdTooltip="درصد برد و باخت" [disabled]="userStatDisabled">
+
+              <div *ngIf="userview">
+                <gamestatistics [id]="userview.id"></gamestatistics>
+              </div>
+
+  </md-tab>
+
+    <md-tab class="tabs" label="آمار تخلفات" mdTooltip="آمار تخلفات" [disabled]="userStatDisabled">
+
+
+        <div *ngIf="userview">
+            <view-frauds [id]="userview.id"></view-frauds>
+        </div>
+    </md-tab>
+</md-tab-group>

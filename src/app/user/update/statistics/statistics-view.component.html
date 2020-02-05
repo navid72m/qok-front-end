@@ -1,0 +1,47 @@
+<md-card class="percent-info-card">
+  <div class="card-content" dir="rtl">
+    <table id="stat" style="width:100%">
+      <tr>
+        <th>بروز رسانی</th>
+        <th>موضوع</th>
+        <th>درصد</th>
+        <th>افزایش/کاهش تعداد پاسخ درست</th>
+        <th>تعداد پاسخ درست</th>
+        <th>تعداد کل</th>
+      </tr>
+
+      <tr *ngFor="let userCatStat of userCategoryStats">
+        <td>
+          <button md-button [disabled]="userCatStat.disabled" class="sticky-shortcut" (click)="updatePercent(userCatStat)">
+                      بروز‌ رسانی
+            </button>
+        </td>
+        <td>
+          <div>{{userCatStat.category}}</div>
+        </td>
+        <td>
+          <md-input-container class="percentage-input">
+            <input disabled class="percent-input" mdInput placeholder="درصد" type="number" [(ngModel)]="userCatStat.percent" >
+          </md-input-container>
+        </td>
+        <td>
+        <md-input-container class="percentage-input">
+          <input class="percent-input" mdInput placeholder="تعداد" type="number" (change)="onInputChange(userCatStat)" [(ngModel)]="userCatStat.added_correct_answered">
+        </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="percentage-input">
+            <input disabled class="percent-input" mdInput placeholder="تعداد پاسخ درست" type="number" [(ngModel)]="userCatStat.correct_answer">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="percentage-input">
+            <input disabled class="percent-input" mdInput placeholder="تعداد کل" type="number" [(ngModel)]="userCatStat.total_answer">
+          </md-input-container>
+        </td>
+      </tr>
+
+
+    </table>
+  </div>
+</md-card>

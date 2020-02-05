@@ -1,0 +1,243 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+</head>
+
+<md-card class="no-padding">
+
+  <md-select placeholder="صفحه مورد نظر" [(ngModel)]="SelectMode">
+    <md-option *ngFor="let x of Modes" [value]="x.value">
+      {{x.value}}
+    </md-option>
+  </md-select>
+
+    <div *ngIf="SelectMode == 'پیش ارزیابی' ">
+        <md-toolbar color="primary">پیش ارزیابی</md-toolbar>
+    <md-card class="no-padding">
+    <md-toolbar >نمایش سوالات</md-toolbar>
+    <div class="card-content">
+
+      <!-- <div><label>تعداد صفحات:</label><div> {{prereview_size.page_size}} </div> </div> -->
+      <div><label>تعداد سوالات:</label><div> {{counter_prev}} </div> </div>
+
+      <div>
+        <!--<label> موضوع:</label>-->
+        <div>
+          <md-select placeholder="انتخاب موضوع" [(ngModel)]="Category" (change) ="get_size(prereview_status, Category.id)">
+            <md-option *ngFor="let category of Categories" [value]="category">
+                {{category.title}}
+            </md-option>
+        </md-select>
+
+        </div>
+      </div>
+
+
+        <md-input-container>
+            <input #searchedPage mdInput placeholder="شماره صفحه" >
+        </md-input-container>
+
+        <button (click)="download(searchedPage.value, prereview_url,prereview_index_url, prereview_mode, Category.id, Category.engtitle)"
+                class="btn" md-raised-button color="primary">دریافت
+        </button>
+    </div>
+</md-card>
+    <md-card class="no-padding">
+    <md-toolbar >بارگذاری سوالات</md-toolbar>
+
+
+    <div class="container" style= "width: 992px">
+
+        <input type="file" ng2FileSelect [uploader]="uploader" class="btn"  color="primary"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+
+      <div class="col-md-9" style="margin-bottom: 40px">
+          <table class="table">
+              <thead>
+              <tr>
+
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of uploader.queue">
+                <td nowrap>
+                    <button type="button" class="btn btn-success btn-xs"
+                            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess"
+
+                            >
+                        <span class="glyphicon glyphicon-upload" ></span> Upload
+                        <!-- Upload -->
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs"
+                            (click)="item.remove()">
+                        <span class="glyphicon glyphicon-trash" ></span> Remove
+                        <!-- Remove -->
+                    </button>
+                </td>
+                  <td><strong>{{ item?.file?.name }}</strong></td>
+
+
+
+
+              </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+
+    <div>
+        <!--<div class="progress" style="">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        </div>-->
+        <md-progress-bar mode="determinate" [value]="confirmation_uploader.progress"></md-progress-bar>
+    </div>
+
+</md-card>
+</div>
+    <div *ngIf="SelectMode === 'ارزیابی'">
+
+    <md-toolbar color="primary">ارزیابی</md-toolbar>
+    <md-card class="no-padding">
+      <md-toolbar >نمایش سوالات</md-toolbar>
+      <div class="card-content">
+          <div><label>تعداد سوالات:</label><div> {{counter_conf}} </div> </div>
+        <!-- <div><label>تعداد صفحات:</label><div> {{confirmation_size.page_size}} </div></div>
+        <div><label>تعداد سوالات:</label><div> {{confirmation_size.question_size}} </div></div> -->
+        <div>
+          <!--<label> موضوع:</label>-->
+          <div>
+            <md-select placeholder="انتخاب موضوع" [(ngModel)]="Category" (change) ="get_size(confirmation_status, Category.id)">
+                <md-option *ngFor="let category of Categories" [value]="category">
+                    {{category.title}}
+                </md-option>
+            </md-select>
+          </div>
+        </div>
+
+        <!-- <my-date-picker class="date-picker" [selDate]="selDate" [options]="myDatePickerOptions" -->
+                        <!-- (dateChanged)="onDateChanged($event)" [(ngModel)]="selectedDate"></my-date-picker> -->
+
+              <!-- <div class="list-table" *ngIf="showTable">
+                <table  style="width:50%">
+                 <tr>
+                    <th>موضوع</th>
+                    <th>تعداد</th>
+
+                 </tr>
+
+                 <tr *ngFor="let cat of this.categorySize">
+                    <th>
+                        {{cat.title}}
+                    </th>
+                    <th><div >{{cat.counter}}</div></th>
+
+
+
+
+               </table>
+               <button (click)="get_size_for_all()"
+                       class="btn" md-raised-button color="primary">لیست
+               </button>
+              </div> -->
+
+
+          <md-input-container>
+              <input #searchedPageConf mdInput placeholder="شماره صفحه" >
+          </md-input-container>
+          <button (click)="download(searchedPageConf.value,confirmation_url, confirmation_index_url,confirmation_mode, Category.id, Category.engtitle)"
+                  class="btn" md-raised-button color="primary">دریافت
+          </button>
+      </div>
+    </md-card>
+    <md-card class="no-padding">
+        <md-progress-bar [mode]="mode" [value]="value"></md-progress-bar>
+      <md-toolbar >بارگذاری سوالات</md-toolbar>
+
+
+      <div class="container" style= "width: 100%">
+
+          <input type="file" ng2FileSelect [uploader]="confirmation_uploader" class="btn"  color="primary"  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+
+        <div class="col-md-9" style="margin-bottom: 40px">
+            <table class="table" >
+                <thead>
+                <th></th>
+                <th style="text-align: center"></th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of confirmation_uploader.queue; let i= index">
+                  <td nowrap>
+                      <button type="button" class="btn btn-success btn-xs"
+                              (click)="uploadFile(item, i)" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                          <span class="glyphicon glyphicon-upload" ></span> Upload
+                          <!-- Upload -->
+                      </button>
+                      <button type="button" class="btn btn-danger btn-xs"
+                              (click)="item.remove()">
+                          <span class="glyphicon glyphicon-trash" ></span> Remove
+                          <!-- Remove -->
+                      </button>
+                  </td>
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table" >
+              <thead>
+                <th style="text-align: center" >name</th>
+                <th style="text-align: center" > وضعیت بارگذاری</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of states">
+                  <td style="text-align: center"> {{item.name}}</td>
+                  <td style="text-align: center"> {{item.state}}</td>
+
+                </tr>
+              </tbody>
+              </table>
+        </div>
+      </div>
+
+      <div>
+
+      </div>
+
+    </md-card>
+
+</div>
+    <div *ngIf="SelectMode == 'وضعیت بارگذاری سوالات' ">
+        <md-card>
+            <md-progress-bar [mode]="uploadedQuestion" [value]=""></md-progress-bar>
+            <md-toolbar >وضعیت سوالات بار گذاشته شده</md-toolbar>
+            <table class="table">
+                <thead>
+                <th style="text-align: center" >name</th>
+                <th style="text-align: center" >شناسه ی فایل </th>
+                <th style="text-align: center" >تاریخ بار گذاشتن</th>
+                <th style="text-align: center" >Accepted</th>
+                <th style="text-align: center" >Rejected</th>
+                <th style="text-align: center" >Corrupted</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let uploaded_file of uploaded_files">
+                    <td style="text-align: center"> {{uploaded_file.name}}</td>
+                    <td style="text-align: center"> {{uploaded_file.id}}</td>
+                    <td style="text-align: center"> {{uploaded_file.upload_date}}</td>
+                    <td *ngIf="uploaded_file.accepted_count != -1" style="text-align: center"> {{uploaded_file.accepted_count}}</td>
+                    <td *ngIf="uploaded_file.accepted_count == -1" style="text-align: center"> در حال بررسی</td>
+                    <td *ngIf="uploaded_file.rejected_count != -1"style="text-align: center"> {{uploaded_file.rejected_count}}</td>
+                    <td *ngIf="uploaded_file.rejected_count == -1" style="text-align: center"> در حال بررسی</td>
+                    <td *ngIf="uploaded_file.corrupted_count != -1" style="text-align: center"> {{uploaded_file.corrupted_count}}</td>
+                    <td *ngIf="uploaded_file.corrupted_count == -1" style="text-align: center"> در حال بررسی</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </md-card>
+    </div>
+
+</md-card>

@@ -1,0 +1,40 @@
+md-card {
+    padding: 0;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+mat-button-ripple {
+    display: none;
+}
+
+/*tbody {
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: rgb(0, 188, 212);
+}
+
+ng2-md-datatable-row:hover {
+    background-color: rgb(228, 245, 247);
+}
+
+td.button:hover {
+    background-color: rgb(0, 188, 212);
+}*/
+
+h3 {
+    font-family: IRANSansWeb !important;
+}
+
+md-list-item:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}
+/*rgb(228, 245, 247)*/
+/*rgb(227, 231, 234)*/
+.material-icons:hover {
+    background-color: rgb(0, 188, 212);
+    cursor: pointer;
+}

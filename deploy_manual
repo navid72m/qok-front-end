@@ -1,0 +1,12 @@
+#!/bin/bash
+MAJOR_VERSION=0
+MINOR_VERSION=1
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REV_COUNT=$(git rev-list --count $CURRENT_BRANCH)
+TIMESTAMP=$(date +%s)
+VERSION=v$MAJOR_VERSION.$MINOR_VERSION.$REV_COUNT.$TIMESTAMP
+
+DOCKER_IMAGE_NAME=docker.quizofkings.com/qok/qok-frontend-ng:$VERSION 
+docker build -t $DOCKER_IMAGE_NAME .
+docker push $DOCKER_IMAGE_NAME
+echo $DOCKER_IMAGE_NAME

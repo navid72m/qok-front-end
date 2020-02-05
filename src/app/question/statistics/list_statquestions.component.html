@@ -1,0 +1,134 @@
+<md-card class="no-padding">
+    <md-toolbar color="primary">آمارگیری سوالات</md-toolbar>
+    <md-card-header >
+          <button [ngClass]="{'active-tab': enableList}" class="header-button" (click)="showCatList()" md-button > دسته بندی بر حسب نوع سوال</button>
+          <button [ngClass]="{'active-tab': enableSearchButton}" class="header-button" (click)="showSearchButton()" md-button > همه ی دسته بندی ها در کنار هم</button>
+    </md-card-header>
+    <button *ngIf="enableSearchButton" class="header-button search-all-cats" (click)="getalltogether()" md-button > جست وجو</button>
+    <md-select *ngIf="enableList"  class="marginCat select-cats-list" placeholder="انتخاب موضوع">
+        <md-option  *ngFor="let cat of cats" (click)="setCatId(cat.id)">
+                {{cat.title}}
+        </md-option>
+        <md-option (click)="setCatId(-1)">
+            همه ی سوالات
+        </md-option>
+    </md-select>
+    <md-select  *ngIf="enableHomisonFilter" class="marginCat select-cats-list" placeholder="فیلتر حامیسان">
+          <md-option (click)="withOutHomison($event)">جست و جوی معمولی</md-option>
+          <md-option (click)="setOldHomison($event)">حامیسان قدیمی</md-option>
+          <md-option (click)="setNotHomison($event)">بدون حامیسان</md-option>
+          <md-option (click)="setNewHomison($event)">حامیسان جدید</md-option>
+      </md-select >
+    <button *ngIf="enableCatSearchButton" class="header-button search-cats" (click)="getCatStat()" md-button > جست وجو</button>
+    <table *ngIf="list" class="content-table">
+      <md-card *ngIf="alltogether != true && rejectReason == false" class="no-padding">
+          <tr>
+              <th>نام دسته بندی</th>
+              <th>قبول شده</th>
+              <th class="cursor-pointer" (click)="showRejectReason()">رده شده</th>
+              <th>جدید اضافه شده</th>
+              <th>گزارش داده شده</th>
+              <th>در انتظار بررسی</th>
+              <th>در انتظار قبول شدن</th>
+          </tr>
+          <tr>
+              <td>{{list.category_title}}</td>
+              <td>{{list.accepted}}</td>
+              <td>{{list.rejected_total}}</td>
+              <td>{{list.new_added}}</td>
+              <td>{{list.reported}}</td>
+              <td>{{list.waiting_for_prereview}}</td>
+              <td>{{list.waiting_for_confirmation}}</td>
+          </tr>
+      </md-card>
+      <md-card *ngIf="alltogether != true && rejectReason == true"  class="no-padding">
+          <tr>
+              <th>نام دسته بندی</th>
+              <th>قبول شده</th>
+              <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل هامیسان</th>
+              <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل کامنت ماینر</th>
+              <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل مردم</th>
+              <th>جدید اضافه شده</th>
+              <th>گزارش داده شده</th>
+              <th>در انتظار بررسی</th>
+              <th>در انتظار قبول شدن</th>
+          </tr>
+          <tr>
+              <td>{{list.category_title}}</td>
+              <td>{{list.accepted}}</td>
+              <td>{{list.rejected_review}}</td>
+              <td>{{list.rejected_prereview}}</td>
+              <td>{{list.rejected_factory}}</td>
+              <td>{{list.new_added}}</td>
+              <td>{{list.reported}}</td>
+              <td>{{list.waiting_for_prereview}}</td>
+              <td>{{list.waiting_for_confirmation}}</td>
+          </tr>
+      </md-card>
+      <md-card *ngIf="alltogether == true && rejectReason == false" class="no-padding">
+          <tr>
+              <th>نام دسته بندی</th>
+              <th>قبول شده</th>
+              <th class="cursor-pointer" (click)="showRejectReason()">رده شده</th>
+              <th>جدید اضافه شده</th>
+              <th>گزارش داده شده</th>
+              <th>در انتظار بررسی</th>
+              <th>در انتظار قبول شدن</th>
+          </tr>
+          <tr *ngFor="let list of allList">
+              <td>{{list.category_title}}</td>
+              <td>{{list.accepted}}</td>
+              <td>{{list.rejected_total}}</td>
+              <td>{{list.new_added}}</td>
+              <td>{{list.reported}}</td>
+              <td>{{list.waiting_for_prereview}}</td>
+              <td>{{list.waiting_for_confirmation}}</td>
+          </tr>
+          <tr *ngIf="totalState == true">
+              <td>همه ی سوالات</td>
+              <td>{{totalQuestionsStats.ACCEPTED}}</td>
+              <td>{{totalQuestionsStats.REJECTED}}</td>
+              <td>{{totalQuestionsStats.NEW_ADDED}}</td>
+              <td>{{totalQuestionsStats.REPORTED}}</td>
+              <td>{{totalQuestionsStats.WAITING_FOR_PREREVIEW}}</td>
+              <td>{{totalQuestionsStats.WAITING_FOR_CONFIRMATION}}</td>
+          </tr>
+      </md-card>
+      <md-card *ngIf="alltogether == true && rejectReason == true"  class="no-padding">
+              <tr>
+                  <th>نام دسته بندی</th>
+                  <th>قبول شده</th>
+                  <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل مردم</th>
+                  <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل کامنت ماینر</th>
+                  <th class="reject-reason-cloumn cursor-pointer" (click)="hiddenRejectReason()">رد شده به دلیل هامیسان</th>
+                  <th>جدید اurفه شده</th>
+                  <th>گزارش داده شده</th>
+                  <th>در انتظار بررسی</th>
+                  <th>در انتظار قبول شدن</th>
+              </tr>
+              <tr *ngFor="let list of allList">
+                  <td>{{list.category_title}}</td>
+                  <td>{{list.accepted}}</td>
+                  <td>{{list.rejected_factory}}</td>
+                  <td>{{list.rejected_prereview}}</td>
+                  <td>{{list.rejected_review}}</td>
+                  <td>{{list.new_added}}</td>
+                  <td>{{list.reported}}</td>
+                  <td>{{list.waiting_for_prereview}}</td>
+                  <td>{{list.waiting_for_confirmation}}</td>
+              </tr>
+              <tr *ngIf="totalState == true">
+                  <td>همه ی سوالات</td>
+                  <td>{{totalQuestionsStats.ACCEPTED}}</td>
+                  <td>{{totalQuestionsStats.rejected_factory}}</td>
+                  <td>{{totalQuestionsStats.rejected_prereview}}</td>
+                  <td>{{totalQuestionsStats.rejected_review}}</td>
+                  <td>{{totalQuestionsStats.NEW_ADDED}}</td>
+                  <td>{{totalQuestionsStats.REPORTED}}</td>
+                  <td>{{totalQuestionsStats.WAITING_FOR_PREREVIEW}}</td>
+                  <td>{{totalQuestionsStats.WAITING_FOR_CONFIRMATION}}</td>
+              </tr>
+          </md-card>
+      </table>
+</md-card>
+

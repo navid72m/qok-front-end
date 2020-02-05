@@ -1,0 +1,47 @@
+<md-card *ngIf="list" class="no-padding">
+    <md-toolbar color="primary">نتایج</md-toolbar>
+    <div class="card-content" dir="rtl">
+          <table id="list" style="width:100%">
+            <tr>
+              <th>حذف</th>
+              <th>جزئیات</th>
+              <th>
+                شناسه
+              </th>
+              <th>
+                عنوان
+              </th>
+              <th>
+                کلیک
+              </th>
+              <th>
+                نوع
+              </th>
+              <th>
+                بازدید
+              </th>
+              <th>
+                ناشر
+              </th>
+              <th>
+                بودجه
+              </th>
+              <th>
+                وضعیت
+              </th>
+            </tr>
+            <tr *ngFor="let ads of list">
+              <td><i md-list-icon class="material-icons" (click)="deleteRedis(ads)" mdTooltip="حذف">delete</i></td>
+              <td><i md-list-icon class="material-icons" (click)="onSelect(ads)" mdTooltip="مشاهده‌ی جزئیات">open_in_new</i></td>
+              <td>{{ads.ad_id}} </td>
+              <td>{{ads.ad_title}} </td>
+              <td>{{ads.clicks}} </td>
+              <td [ngSwitch] = ads.type>  <div *ngSwitchCase =" 'ROUND_ADVERTISE' " > تبلیغ زیر سوال</div> <div *ngSwitchCase = " 'GAME_ADVERTISE' " > تبلیغ زیر بازی</div> <div *ngSwitchCase = " 'QUESTION_ADVERTISE' " > تبلیغ سوالی</div> </td>
+              <td>{{ads.views}} </td>
+              <td>{{ads.pub_title}} </td>
+              <td>{{ads.budget}} </td>
+              <td [ngSwitch] = ads.status > <div *ngSwitchCase =" 'ACTIVE' " [ngStyle] = "{ 'color' : 'green' }"  > <i md-list-icon class="material-icons"  (click)="deactive(ads,0)" mdTooltip="فعال">check_box</i></div> <div *ngSwitchCase = " 'INACTIVATE' " [ngStyle] = "{ 'color' : 'red' }"  > <i md-list-icon class="material-icons"  (click)="deactive(ads,1)" mdTooltip="غیرفعال">check_box_outline_blank</i></div>  </td>
+            </tr>
+          </table>
+    </div>
+</md-card>

@@ -1,0 +1,99 @@
+
+<md-tab-group class="tab-container batches-tab">
+    <md-tab class="tabs" label="بچ ها">
+
+      <md-card class="card-content">
+          <md-list>
+              <div class="card-content d-inline-block margin-padding-right-10">
+                  <md-input-container>
+                      <input [(ngModel)]="newBatchName"  mdInput placeholder="نام بچ">
+                  </md-input-container>
+                  <button  class="btn" md-raised-button color="primary" (click)="createBatch()">
+                      ساخت بچ
+                  </button>
+
+              </div>
+              <div class="input-holder d-inline-block">
+                  <md-input-container>
+                      <input readonly [value]="newBatchId"  mdInput placeholder="آیدی بچ (ابتدا بسازید)">
+                  </md-input-container>
+              </div>
+
+          </md-list>
+
+          <md-list>
+              <h3 md-subheader class="margin-right-20">بچ ها</h3>
+              <div class="batch-inner">
+
+                  <button (click)="getbaches()" class="btn margin-right-20" md-raised-button color="primary">
+                      دریافت بچ ها
+                  </button>
+
+                  <div class="batch-content" *ngIf="batches.length">
+                      <table class="batch-table" style="width:100%">
+                          <tr>
+
+                              <th>عنوان</th>
+                              <th>شماره</th>
+                              <th>اضافه کردن گیفت به بچ</th>
+                              <th>حذف بچ</th>
+                              <th>دانلود</th>
+
+                          </tr>
+
+                          <tr *ngFor="let batch of batches;">
+
+                              <td>{{batch.Title}}</td>
+                              <td>{{batch.Id}}</td>
+                              <td>
+                                  <md-input-container>
+                                      <input  [(ngModel)]="giftIdForAssign[batch.Id]"  mdInput placeholder="شماره گیفت">
+                                  </md-input-container>
+                                  <button  class="btn" md-raised-button color="primary" (click)="assignGift(batch.Id)">
+                                      افزودن
+                                  </button>
+                              </td>
+                              <td>
+                                  <md-input-container>
+                                      <input  [(ngModel)]="giftIdForDelete[batch.Id]"  mdInput placeholder="شماره گیفت">
+                                  </md-input-container>
+
+                                  <button  class="btn" md-raised-button color="primary" (click)="unAssignBatch(batch.Id)">
+                                      حذف بچ
+                                  </button>
+                              </td>
+                              <td>
+                                  <md-radio-group [(ngModel)]="downloadBatchtype[batch.Id]" class="radio-holder-batch">
+                                      <md-radio-button value="json" class="md-primary">JSON</md-radio-button>
+                                      <md-radio-button value="other">غیره </md-radio-button>
+                                  </md-radio-group>
+
+                                  <button (click)="downloadBatch(batch.Id)" class="btn" md-raised-button color="primary">
+                                      دانلود بچ
+                                  </button>
+                              </td>
+
+                          </tr>
+                      </table>
+                  </div>
+
+              </div>
+
+          </md-list>
+      </md-card>
+
+
+
+    </md-tab>
+    <md-tab class="tabs" label="گیفت چندتایی" mdTooltip="گیفت چندتایی" >
+
+        <app-multiplebatch></app-multiplebatch>
+
+    </md-tab>
+    <md-tab class="tabs" label="گیفت تکی" mdTooltip="گیفت تکی">
+
+        <app-singlebatches></app-singlebatches>
+
+    </md-tab>
+
+</md-tab-group>

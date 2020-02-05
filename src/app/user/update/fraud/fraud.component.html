@@ -1,0 +1,67 @@
+<form #formCtrl="ngForm" class="user-form">
+  <md-card class="create-user-card" *ngIf="frauds">
+    <md-card-content>
+      <h2 md-subheader class="gray-color">
+        <i class="material-icons sticky-shortcut red-color">check_circle</i>
+        تخلفات بازی معمولی</h2>
+      <h3 md-subheader>
+        <i class="material-icons sticky-shortcut red-color">description</i>
+        وضعیت فعلی
+      </h3>
+
+        <section class="user-select" >
+        <md-checkbox [(ngModel)]="frauds.normal_game_free_state" name="normalGameFreeState"  >آزاد</md-checkbox>
+          <md-checkbox [(ngModel)]="frauds.normal_game_temp_block_state"  name="normalGameTempBlockState" >سه روز بلاک</md-checkbox>
+          <md-checkbox [(ngModel)]="frauds.normal_game_permanent_block_state" name="normalGamePermanentBlockState" >بلاک دائمی</md-checkbox>
+        </section>
+
+
+      <h3 md-subheader>
+        <i class="material-icons sticky-shortcut red-color">description</i>
+        آخرین وضعیت
+      </h3>
+
+      <section class="user-select" >
+        <md-checkbox [(ngModel)]="frauds.normal_game_free_last_state" name="normalGameFreeLastState" >آزاد</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.normal_game_temp_block_last_state" name="normalGameTempBlockLastState" >سه روز بلاک</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.normal_game_permanent_block_last_state" name="normalGamePermanentBlockLastState" >بلاک دائمی</md-checkbox>
+      </section>
+
+    </md-card-content>
+
+    <md-card-content>
+      <h2 md-subheader class="gray-color">
+        <i class="material-icons sticky-shortcut red-color">check_circle</i>
+        تخلفات بازی گروهی</h2>
+
+      <h3 md-subheader>
+        <i class="material-icons sticky-shortcut red-color">description</i>
+        وضعیت فعلی
+      </h3>
+
+      <section class="user-select" >
+        <md-checkbox [(ngModel)]="frauds.clan_game_free_state"  name="clanGameFreeState" >آزاد</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_exception_state" name="clanGameExeptionState" >بلاک از بازی گروهی</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_temp_block_state"  name="clanGameTempBlockState">سه روز بلاک</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_permanent_block_state" name="clanGamePermanentBlockState">بلاک دائمی</md-checkbox>
+      </section>
+
+
+      <h3 md-subheader>
+        <i class="material-icons sticky-shortcut red-color">description</i>
+        آخرین وضعیت
+      </h3>
+
+      <section class="user-select" >
+        <md-checkbox [(ngModel)]="frauds.clan_game_free_last_state" name="clanGameFreeLastState" >آزاد</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_exception_last_state" name="clanGameExeptionLastState">بلاک از بازی گروهی</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_temp_block_last_state" name="clanGameTempBlockLastState" >سه روز بلاک</md-checkbox>
+        <md-checkbox [(ngModel)]="frauds.clan_game_permanent_block_last_state" name="clanGamePermanentBlockLastState" >بلاک دائمی</md-checkbox>
+      </section>
+    </md-card-content>
+
+    <md-card-content>
+      <h2 md-subheader>تخلفات لیگ ستاره (....coming soon)</h2>
+    </md-card-content>
+  </md-card>
+  </form>

@@ -1,0 +1,48 @@
+.create-question {
+    padding-bottom: 2em;
+}
+
+.input-full-width {
+    display: list-item;
+    width: 40%;
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2.5em;
+}
+
+.buttons {
+    margin-top: -20px;
+    margin-right: 1.5em;
+    clear: both;
+}
+.myAutoComplete{
+    background: white;
+    width: 300px;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    top: 35px;
+    overflow: auto;
+    height: 200px;
+    box-shadow:0 3px 6px rgba(0,0,0,0.16);
+}
+.user-list{
+    padding: 0;
+}
+.hoverable{
+    list-style: none;
+    padding: 10px;
+}
+.hoverable:hover{
+    background: #e4e4e4;
+}
+.margin-top-fix{
+    margin-top: 30px;
+}
+.show-id{
+    background: mediumseagreen;
+    padding: 10px;
+    color: #fff;
+    width: 20%;
+    margin: 0 0 20px 0;
+}

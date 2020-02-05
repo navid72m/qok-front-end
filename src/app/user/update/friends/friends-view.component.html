@@ -1,0 +1,16 @@
+<md-card class="friends-card-info">
+
+  <div class="card-content" dir="rtl">
+    <md-list>
+      <h3 md-subheader>لیست دوستان</h3>
+      <md-list-item class="item" (click)="onSelectFriend(friend)" *ngFor="let friend of friends">
+        <!-- <md-icon md-list-icon>folder</md-icon> -->
+
+        <!-- <p md-line *ngIf="friend.username">نام کاربری</p> -->
+        <h4 md-line *ngIf="friend.username">{{friend.username}}</h4>
+
+      </md-list-item>
+      <div class="footer"></div>
+    </md-list>
+  </div>
+</md-card>

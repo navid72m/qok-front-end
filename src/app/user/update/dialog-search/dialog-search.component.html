@@ -1,0 +1,13 @@
+<div dir="rtl">
+    <h1 class="centered" md-dialog-title>جست‌وجوی کاربران</h1>
+    <md-input-container class="dialog-input">
+        <input mdInput placeholder="عبارت مورد نظر"
+               [(ngModel)]="dialogMessage.searchTerm"
+               (keyup.enter)="searchUser()">
+    </md-input-container>
+    <div md-dialog-actions>
+    <button md-button (click)="searchUser()">جستوجو با نام کاربری</button>
+    <button md-button (click)="searchInvcode()">جستوجو با کد دعوت</button>
+    <button md-button (click)="searchClan()">جستوجو با نام گروه</button>
+    </div>
+</div>

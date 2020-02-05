@@ -1,0 +1,135 @@
+
+<md-card>
+
+    <md-toolbar color="primary">گزارشات آماری</md-toolbar>
+
+    <md-card-content>
+
+        <!--payment status-->
+
+        <div class="card-content" dir="rtl">
+            <h3 class="right">روزانه (حداکثر ۱۰۰ روز)</h3>
+            <form #Day="ngForm">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="DaysNumber"   name="DaysNumber" placeholder=" تعداد روز(پیش فرض ۵ روز)" class="form-control"  type="number">
+                </md-input-container>
+            </form>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                    <th>خرید</th>
+                </tr>
+                <ng-template  ngFor let-dataset [ngForOf]="daily" let-i="index" >
+                    <tr *ngIf="i < DaysNumber">
+                        <td rowspan="2">{{ dataset[0].date }}</td>
+                        <td>{{ dataset[0].count }}</td>
+                        <td>{{ dataset[0].amount }}</td>
+                    </tr>
+                    <tr *ngIf="i < DaysNumber">
+                        <td>{{ dataset[1].count }}</td>
+                        <td>{{ dataset[1].amount }}</td>
+                    </tr>
+                </ng-template>
+            </table>
+
+
+            <h3 class="right">ماهانه (حداکثر ۱۰ ماه)</h3>
+            <form #Month="ngForm">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="MounthNumber" name="MounthNumber" placeholder=" تعداد ماه(پیش فرض ۵ ماه)" class="form-control"  type="number">
+                </md-input-container>
+            </form>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                    <th>خرید</th>
+                </tr>
+                <!--<tr *ngFor="let dataset of monthly">
+                    <td>{{ dataset.date }}</td>
+                    <td>{{ dataset.count }}</td>
+                    <td>{{ dataset.amount }}</td>
+                </tr>-->
+                <ng-template  ngFor let-dataset [ngForOf]="monthly" let-i="index" >
+                    <tr *ngIf="i < MounthNumber">
+                        <td rowspan="2">{{ dataset[0].date }}</td>
+                        <td>{{ dataset[0].count }}</td>
+                        <td>{{ dataset[0].amount }}</td>
+                    </tr>
+                    <tr *ngIf="i < MounthNumber">
+                        <!--<td>{{ dataset[1].count }}</td>-->
+                        <!--<td>{{ dataset[1].amount }}</td>-->
+                    </tr>
+                </ng-template>
+            </table>
+
+
+            <h3>جزییات خرید امروز</h3>
+            <table>
+                <tr>
+                    <th>فروشگاه</th>
+                    <th>تعداد</th>
+                    <th>خرید</th>
+                </tr>
+                <tr *ngFor="let dataset of today_detailed">
+                    <td>{{ dataset.store }}</td>
+                    <td>{{ dataset.count }}</td>
+                    <td>{{ dataset.amount }}</td>
+                </tr>
+                <tr style="font-weight: bold;text-align:center;background-color:rgba(0,0,0,.09)" >
+                    <td style="text-align: center" colspan="3">direct</td>
+                </tr>
+                <tr *ngFor="let dataset of today_direct_detailed">
+                    <td>{{ dataset.store }}</td>
+                    <td>{{ dataset.count }}</td>
+                    <td>{{ dataset.amount }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--register status-->
+
+        <div class="card-content" dir="rtl">
+            <h3>ثبت نام شده ها</h3>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                </tr>
+                <tr *ngFor="let dataset of registered">
+                    <td>{{ dataset.date }}</td>
+                    <td>{{ dataset.count }}</td>
+                </tr>
+            </table>
+
+            <h3>ثبت نام نشده ها</h3>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                </tr>
+                <tr *ngFor="let dataset of unregistered">
+                    <td>{{ dataset.date }}</td>
+                    <td>{{ dataset.count }}</td>
+                </tr>
+            </table>
+
+            <h3>آمار ورود کاربران</h3>
+            <table>
+                <tr>
+                    <th>تاریخ</th>
+                    <th>تعداد</th>
+                </tr>
+                <tr *ngFor="let dataset of retention">
+                    <td>{{ dataset.day }}</td>
+                    <td>{{ dataset.count }}</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </md-card-content>
+
+</md-card>
+
